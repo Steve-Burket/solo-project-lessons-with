@@ -6,13 +6,25 @@ function RegisterForm() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [instrument, setInstrument] = useState('');
+  const [instrument, setInstrument] = useState('Select');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
   // const [instructorIs, setInstructorIs] = useState(''); save for later. If user selects 'student' an extra field will render to select teacher
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+
+  // hard coded instruments for now
+  // will bring in DB later
+  const instruments = [
+    'Guitar',
+    'Mandolin',
+    'Bass',
+    'Ukulele',
+    'Vocals',
+    'Piano',
+    'Drums'
+  ];
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -27,7 +39,7 @@ function RegisterForm() {
         instrument: instrument,
         username: username,
         password: password,
-        is_instructor: isInstructor,
+        is_instructor: isInstructor
         // instructor_is: instructorIs,
       }
     });
@@ -100,15 +112,17 @@ function RegisterForm() {
             <select
               name='instruments'
               id='instruments'
-              placeholder='Instrument'
               name='instrument'
               value={instrument}
               required
               onChange={(event) => setInstrument(event.target.value)}
             >
-              <option value='guitar'>Guitar</option>
-              <option value='electric_bass'>Electric Bass</option>
-              <option value='mandolin'>Mandolin</option>
+              <option>
+               {instrument}
+              </option>
+              {instruments.map((inst, i) => {
+                return <option key={i} value={inst}>{inst}</option>;
+              })}
             </select>
           </label>
         </div>
