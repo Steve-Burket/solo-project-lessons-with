@@ -4,8 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [instrument, setInstrument] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isInstructor, setIsInstructor] = useState(true);
+  // const [instructorIs, setInstructorIs] = useState(''); save for later. If user selects 'student' an extra field will render to select teacher
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -15,11 +20,16 @@ function RegisterForm() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        firstName: firstName,
-        lastName: lastName,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone_number: phoneNumber,
+        instrument: instrument,
         username: username,
         password: password,
-      },
+        is_instructor: isInstructor,
+        // instructor_is: instructorIs,
+      }
     });
   }; // end registerUser
 
@@ -33,6 +43,7 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor='firstname'>
+          First:
           <input
             placeholder='First name'
             type='text'
@@ -45,6 +56,7 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor='lastname'>
+          Last:
           <input
             placeholder='Last name'
             type='text'
@@ -54,47 +66,56 @@ function RegisterForm() {
             onChange={(event) => setLastName(event.target.value)}
           />
         </label>
-      {/* </div>
+      </div>
       <div>
-        <label htmlFor='username'>
+        <label htmlFor='email'>
+          Email:
           <input
             placeholder='email'
             type='text'
-            name='username'
-            value={username}
+            name='email'
+            value={email}
             required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      {/* </div>
-      <div>
-        <label htmlFor='username'>
-          <input
-            placeholder='Phone #'
-            type='text'
-            name='username'
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
         </label>
       </div>
-      <div> */} 
-        {/* <div>
-          <label htmlFor='username'>
-            <input
-            placeholder='Instrument'
-              type='text'
-              name='username'
-              value={username}
-              required
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </label>
-        </div> */}
-        <label htmlFor='username'>
+      <div>
+        <label htmlFor='phone_number'>
+          Phone:
           <input
-          placeholder='Username'
+            placeholder='ex. 555-555-5555'
+            type='text'
+            name='phone_number'
+            value={phoneNumber}
+            required
+            onChange={(event) => setPhoneNumber(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <div>
+          <label htmlFor='instrument'>
+            Instrument:
+            <select
+              name='instruments'
+              id='instruments'
+              placeholder='Instrument'
+              name='instrument'
+              value={instrument}
+              required
+              onChange={(event) => setInstrument(event.target.value)}
+            >
+              <option value='guitar'>Guitar</option>
+              <option value='electric_bass'>Electric Bass</option>
+              <option value='mandolin'>Mandolin</option>
+            </select>
+          </label>
+        </div>
+        <label htmlFor='username'>
+          Username:
+          <input
+            placeholder='Username'
             type='text'
             name='username'
             value={username}
@@ -105,14 +126,41 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor='password'>
+          Password:
           <input
-          placeholder='Password'
+            placeholder='Password'
             type='password'
             name='password'
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
+        </label>
+      </div>
+      <div>
+        <label htmlFor='is_instructor'>
+          <input
+            type='radio'
+            id='student'
+            name='is_instructor'
+            value='false'
+            required
+            onChange={(event) => setIsInstructor(event.target.value)}
+          />
+          Student
+        </label>
+      </div>
+      <div>
+        <label htmlFor='is_instructor'>
+          <input
+            type='radio'
+            id='teacher'
+            name='is_instructor'
+            value={isInstructor}
+            required
+            onChange={(event) => setIsInstructor(event.target.value)}
+          />
+          Teacher
         </label>
       </div>
       <div>
