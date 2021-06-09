@@ -2,6 +2,7 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import StudentRoster from '../StudentRoster/StudentRoster.jsx';
+import PracticeLog from '../PracticeLog/PracticeLog';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -12,6 +13,7 @@ function UserPage() {
       <hr/>
       <p>Your primary instrument is: {user.instrument}</p>
       <StudentRoster/>
+      <PracticeLog />
       <LogOutButton className="btn" />
     </div>
   );
