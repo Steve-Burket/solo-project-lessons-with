@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 });
 
 /**
- * POST route instrument
+ * POST route for instrument
  */
 router.post('/practice-log', (req, res) => {
   // POST route code here

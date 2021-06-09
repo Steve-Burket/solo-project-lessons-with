@@ -10,10 +10,17 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
-  // const [instructorIs, setInstructorIs] = useState(''); save for later. If user selects 'student' an extra field will render to select teacher
+  const [instructorIs, setInstructorIs] = useState('');
+  const [viewInstructorList, setInstructorList] = useState(false)
+
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  // VIEW INSTRUCTOR FIELD
+  const displayInstructorField = (e) => {
+    console.log('in displayInstructorField');
+    setInstructorList(!viewInstructorList);
+  }
   // hard coded instruments for now
   // will bring in DB later
   const instruments = [
@@ -25,6 +32,9 @@ function RegisterForm() {
     'Piano',
     'Drums'
   ];
+
+  // Teacher's list; will bring in from DB later
+  const teachers = ['Steve', 'Nate', 'Alex', 'Kara', 'Emily']
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -39,8 +49,8 @@ function RegisterForm() {
         instrument: instrument,
         username: username,
         password: password,
-        is_instructor: isInstructor
-        // instructor_is: instructorIs,
+        is_instructor: isInstructor,
+        instructor_is: instructorIs
       }
     });
   }; // end registerUser
@@ -117,11 +127,13 @@ function RegisterForm() {
               required
               onChange={(event) => setInstrument(event.target.value)}
             >
-              <option>
-               {instrument}
-              </option>
+              <option>{instrument}</option>
               {instruments.map((inst, i) => {
-                return <option key={i} value={inst}>{inst}</option>;
+                return (
+                  <option key={i} value={inst}>
+                    {inst}
+                  </option>
+                );
               })}
             </select>
           </label>
@@ -152,8 +164,33 @@ function RegisterForm() {
         </label>
       </div>
       <div>
+        {viewInstructorList ?  (
+          <label htmlFor='instructor_is'>
+            Instructor:
+            <select
+              type='instructor_is'
+              name='instructor_is'
+              value={instructorIs}
+              required
+              onChange={(event) => setInstructorIs(event.target.value)}
+            >
+              <option>{instrument}</option>
+              {teachers.map((teach, i) => {
+                return (
+                  <option key={i} value={teach}>
+                    {teach}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+        ) : undefined }
+      </div>
+
+      <div>
         <label htmlFor='is_instructor'>
           <input
+            onClick={displayInstructorField}
             type='radio'
             id='student'
             name='is_instructor'
