@@ -26,7 +26,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/student', practiceLogRouter);
+app.use('/practice_log', practiceLogRouter);
 app.use('/lesson_plan', lessonPlanRouter);
 app.use('/instrument', instrumentRouter);
 

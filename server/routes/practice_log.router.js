@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route for practice log
  */
-router.get('/practice-log', (req, res) => {
+router.get('/', (req, res) => {
   // GET route code here
   const queryPracticeLog = `SELECT * FROM "practice_log" ORDER BY "user_id";`;
   
@@ -26,8 +26,10 @@ router.get('/practice-log', (req, res) => {
 /**
  * POST route practice log
  */
-router.post('/practice-log', (req, res) => {
+router.post('/', (req, res) => {
   // POST route code here
+  console.log('POSTing practice log: ', req.body);
+  
   const user_id = req.body.user_id;
   const date_of = req.body.date_of;
   const practice_length = req.body.practice_length;
