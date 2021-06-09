@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './PracticeLog.css';
 
@@ -6,7 +6,9 @@ import './PracticeLog.css';
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function PracticeLog(props) {
-  const store = useSelector((store) => store);
+  const practiceLog = useSelector((store) => store.practiceLog);
+  console.log(practiceLog);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   // LOCAL STATE
@@ -45,15 +47,54 @@ function PracticeLog(props) {
     setQuestions('');
   }; // end handle submit
 
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PRACTICE_LOG' });
+  }, []);
+
   return (
     <>
+      <div>
+        <div>
+          <h4>View Practice Log</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {/* {practiceLog.map((log) => {
+                  <td>{log.date_of}</td>;
+                })} */}
+                {practiceLog.date_of}
+                <td>
+                  <button>
+                    {/* onClick={dispatch({ type: 'FETCH_PRACTICE_LOG' })} */}
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {JSON.stringify(practiceLog)}
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
       <div className='practice-log'>
         <h3>Practice Log</h3>
-        <form onSubmit={submitPracticeLog}>
+        <form onSubmit={submitPracticeLog} key={user.id}>
           <label htmlFor='date'>
             Date:
             <input
-              placeholder='Date'
+              placeholder='DD/MM/YYYY'
               type='text'
               name='date'
               value={date}
