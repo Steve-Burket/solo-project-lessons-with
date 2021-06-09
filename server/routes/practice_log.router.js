@@ -5,8 +5,22 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/practice-log', (req, res) => {
   // GET route code here
+  const queryPracticeLog = `SELECT * FROM "practice_log" ORDER BY "user_id";`;
+  
+  
+  pool
+    .query(queryPracticeLog)
+    .then((result) => {
+      console.log(result);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log(`Error in practice log GET`, err);
+      // process the database error
+      res.sendStatus(500);
+    });
 });
 
 /**
@@ -20,16 +34,24 @@ router.post('/practice-log', (req, res) => {
   const topic = req.body.topic;
   const improved_on = req.body.improved_on;
   const weak_points = req.body.weak_points;
-  const questions = req.body.questions
+  const questions = req.body.questions;
 
   const queryPracticeLog = `INSERT INTO "practice_log" ("user_id", "date_of", "practice_length", "topic", "improved_on", "weak_points", "questions")
   VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "user_id";`;
-  pool.query(queryPracticeLog, [user_id, date_of, practice_length, topic, improved_on, weak_points, questions])
-  .then(() => res.sendStatus(201))
-  .catch((err) => {
+  pool
+    .query(queryPracticeLog, [
+      user_id,
+      date_of,
+      practice_length,
+      topic,
+      improved_on,
+      weak_points,
+      questions
+    ])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
       console.log('Error in practice log POST', err);
-      
-  })
+    });
 });
 
 module.exports = router;
