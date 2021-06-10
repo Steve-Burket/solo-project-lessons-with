@@ -55,7 +55,7 @@ function PracticeLog() {
   const fetchPracticeLog = (log) => {
     dispatch({
       type: 'FETCH_PRACTICE_LOG',
-      payload: log
+      // payload: log
     });
   };
 
