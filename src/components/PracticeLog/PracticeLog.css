@@ -1,12 +1,14 @@
 .practice-log {
-    margin: 20px 1px;
-    padding: 20px;
-    border: 1px solid black;
-    width: 30%;
+  margin: 20px 1px;
+  padding: 20px;
+  border: 1px solid black;
+  width: 30%;
 }
 
 .practice-log-container {
-    border: 1px solid black;
-    margin: 20px;
-    padding: 30px;
+  margin: 20px 1px;
+  padding: 20px;
+  border: 1px solid black;
+  width: 30%;
+  /* list-style: none; */
 }

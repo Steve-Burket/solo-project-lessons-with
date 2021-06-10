@@ -88,12 +88,28 @@ function PracticeLog() {
             </tbody>
           </table>
         </div>
-        <ul className='practice-log-container'>
+        <ul className='practice-log-container' value={date}>
           {practiceLog.map((log, i) => {
             return (
               <li key={i}>
-                {log.date_of} {log.practice_length} {log.topic}
-                {log.improved_on} {log.weak_points} {log.questions}
+                Date: {log.date_of}
+                <br />
+                <br />
+                Duration: {log.practice_length}
+                <br />
+                <br />
+                Topic: {log.topic}
+                <br />
+                <br />
+                Improved on: {log.improved_on}
+                <br />
+                <br />
+                Needs work: {log.weak_points}
+                <br />
+                <br />
+                Questions: {log.questions}
+                <br />
+                <br />
               </li>
             );
           })}
