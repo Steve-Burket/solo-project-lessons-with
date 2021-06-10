@@ -85,8 +85,8 @@ function StudentRoster(props) {
         <tbody>
           {studentList.map((student, i, k) => {
             return (
-              <tr>
-                <td key={i}>{student}</td>
+              <tr key={i}>
+                <td >{student}</td>
                 {instruments.map((instrument, j) => {
                   return <td key={j}>{instrument}</td>;
                 })}

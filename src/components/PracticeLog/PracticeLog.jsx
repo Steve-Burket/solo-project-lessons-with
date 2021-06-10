@@ -23,9 +23,9 @@ function PracticeLog() {
 
   // handle submit of practice log
   // POST to the DB
-  const submitPracticeLog = (e) => {
+  const submitPracticeLog = (event) => {
     console.log('in submitPracticeLog');
-    e.preventDefault();
+    event.preventDefault();
 
     dispatch({
       type: 'SUBMIT_PRACTICE_LOG',
@@ -55,7 +55,7 @@ function PracticeLog() {
   const fetchPracticeLog = (log) => {
     dispatch({
       type: 'FETCH_PRACTICE_LOG',
-      // payload: log
+      payload: log
     });
   };
 
@@ -75,10 +75,13 @@ function PracticeLog() {
               {practiceLog.map((log, i) => {
                 console.log(log.date_of);
                 return (
-                  <tr>
-                    <td key={i}>{log.date_of}</td>
+                  <tr key={i}>
+                    <td>{log.date_of}</td>
                     <td>
-                      <button value={log.user_id} onClick={() => fetchPracticeLog(log)}>
+                      <button
+                        value={log.user_id}
+                        onClick={() => fetchPracticeLog(log)}
+                      >
                         View
                       </button>
                     </td>

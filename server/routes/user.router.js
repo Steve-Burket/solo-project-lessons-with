@@ -1,12 +1,28 @@
 const express = require('express');
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticated
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
+
+// // Route to get teachers only for student registration
+// router.get('/', (req, res) => {
+//   const queryTeachers = `SELECT * FROM "user"
+// WHERE "is_instructor" = true;`;
+//   pool
+//     .query(queryTeachers)
+//     .then((result) => {
+//       console.log('here are the teachers: ', result);
+//       res.send(result.rows);
+//     })
+//     .catch((err) => {
+//       console.log('Error in getting teachers', err);
+//       res.sendStatus(500);
+//     });
+// });
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
@@ -26,12 +42,22 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const is_instructor = req.body.is_instructor;
-  // const instructor_is = req.body.instructor_is; save for later
+  const instructor_is = req.body.instructor_is;
 
-  const queryText = `INSERT INTO "user" (first_name, last_name, email, phone_number, instrument, username, password, is_instructor)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`;
+  const queryText = `INSERT INTO "user" (first_name, last_name, email, phone_number, instrument, username, password, is_instructor, instructor_is)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`;
   pool
-    .query(queryText, [first_name, last_name, email, phone_number, instrument, username, password, is_instructor])
+    .query(queryText, [
+      first_name,
+      last_name,
+      email,
+      phone_number,
+      instrument,
+      username,
+      password,
+      is_instructor,
+      instructor_is
+    ])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);

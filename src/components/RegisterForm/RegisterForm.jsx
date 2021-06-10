@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
+  const errors = useSelector((store) => store.errors);
+  const teachers = useSelector((store) => store.teachers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_TEACHERS' });
+  }, []);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -11,16 +19,15 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
   const [instructorIs, setInstructorIs] = useState('');
-  const [viewInstructorList, setInstructorList] = useState(false)
+  const [viewInstructorList, setInstructorList] = useState(false);
 
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
+  console.log(teachers);
 
   // VIEW INSTRUCTOR FIELD
   const displayInstructorField = (e) => {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
-  }
+  };
   // hard coded instruments for now
   // will bring in DB later
   const instruments = [
@@ -34,7 +41,7 @@ function RegisterForm() {
   ];
 
   // Teacher's list; will bring in from DB later
-  const teachers = ['Steve', 'Nate', 'Alex', 'Kara', 'Emily']
+  // const teacher = ['Steve', 'Nate', 'Alex', 'Kara', 'Emily'];
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -164,7 +171,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        {viewInstructorList ?  (
+        {viewInstructorList && (
           <label htmlFor='instructor_is'>
             Instructor:
             <select
@@ -174,17 +181,18 @@ function RegisterForm() {
               required
               onChange={(event) => setInstructorIs(event.target.value)}
             >
-              <option>{instrument}</option>
-              {teachers.map((teach, i) => {
+              <option selected disabled>Select</option>
+              {teachers.map((teach) => {
+                console.log(teach.first_name, teach.last_name);
                 return (
-                  <option key={i} value={teach}>
-                    {teach}
+                  <option key={teach.id} value={teach.id} >
+                    {teach.first_name + ' ' + teach.last_name}
                   </option>
                 );
               })}
             </select>
           </label>
-        ) : undefined }
+        )}
       </div>
 
       <div>
