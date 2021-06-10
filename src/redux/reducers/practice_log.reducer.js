@@ -1,9 +1,7 @@
 const practiceLogReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PRACTICE_LOG':
-      return [...action.payload];
-    case 'UNSET_PRACTICE_LOG':
-      return {};
+      return action.payload;
     default:
       return state;
   }

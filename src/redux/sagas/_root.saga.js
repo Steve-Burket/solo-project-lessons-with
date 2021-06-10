@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import practiceLogSaga from './practice_log.saga';
-import fetchPracticeLogSaga from './practice_log.saga';
+// import fetchPracticeLogSaga from './practice_log.saga';
 import teacherSaga from './teacher.saga';
 
 
@@ -20,7 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     practiceLogSaga(),
-    fetchPracticeLogSaga(),
+    // fetchPracticeLogSaga(),
     teacherSaga()
   ]);
 }

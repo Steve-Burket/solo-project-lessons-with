@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route for practice log
@@ -26,11 +29,11 @@ router.get('/', (req, res) => {
 /**
  * POST route practice log
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log('POSTing practice log: ', req.body);
   
-  const user_id = req.body.user_id;
+  const user_id = req.user.id;
   const date_of = req.body.date_of;
   const practice_length = req.body.practice_length;
   const topic = req.body.topic;

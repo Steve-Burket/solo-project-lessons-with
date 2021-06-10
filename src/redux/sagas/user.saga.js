@@ -19,25 +19,13 @@ function* fetchUser() {
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
     yield put({ type: 'SET_USER', payload: response.data, config});
-    console.log('here are the teachers:', response.data);
+    console.log('here is the teacher/ student:', response.data);
     
   } catch (error) {
     console.log('User get request failed', error);
   }
 }
 
-// function* fetchTeachers() {
-//   try {
-//     const teacher = yield axios.get('/teacher');
-
-//     yield put({ type: 'SET_USER', payload: teacher.data})
-//     console.log('Here is a list of the teachers', teacher.first_name);
-    
-//   } catch (error) {
-//     console.log('Teacher get request failed', error);
-    
-//   }
-// }
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   // yield takeEvery('FETCH_TEACHERS', fetchTeachers);
