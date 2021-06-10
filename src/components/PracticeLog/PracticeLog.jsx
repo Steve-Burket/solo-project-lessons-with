@@ -5,9 +5,10 @@ import './PracticeLog.css';
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function PracticeLog(props) {
+function PracticeLog() {
   const practiceLog = useSelector((store) => store.practiceLog);
   console.log(practiceLog);
+
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
@@ -51,6 +52,13 @@ function PracticeLog(props) {
     dispatch({ type: 'FETCH_PRACTICE_LOG' });
   }, []);
 
+  const fetchPracticeLog = (log) => {
+    dispatch({
+      type: 'FETCH_PRACTICE_LOG',
+      payload: log
+    });
+  };
+
   return (
     <>
       <div>
@@ -64,18 +72,19 @@ function PracticeLog(props) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {/* {practiceLog.map((log) => {
-                  <td>{log.date_of}</td>;
-                })} */}
-                {practiceLog.date_of}
-                <td>
-                  <button>
-                    {/* onClick={dispatch({ type: 'FETCH_PRACTICE_LOG' })} */}
-                    View
-                  </button>
-                </td>
-              </tr>
+              {practiceLog.map((log, i) => {
+                console.log([log.date_of]);
+                return (
+                  <tr>
+                    <td key={i}>{log.date_of}</td>
+                    <td>
+                      <button value={log.id} onClick={() => fetchPracticeLog(log)}>
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -90,7 +99,7 @@ function PracticeLog(props) {
       </div>
       <div className='practice-log'>
         <h3>Practice Log</h3>
-        <form onSubmit={submitPracticeLog} key={user.id}>
+        <form onSubmit={submitPracticeLog} value={user.id}>
           <label htmlFor='date'>
             Date:
             <input
