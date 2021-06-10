@@ -73,12 +73,12 @@ function PracticeLog() {
             </thead>
             <tbody>
               {practiceLog.map((log, i) => {
-                console.log([log.date_of]);
+                console.log(log.date_of);
                 return (
                   <tr>
                     <td key={i}>{log.date_of}</td>
                     <td>
-                      <button value={log.id} onClick={() => fetchPracticeLog(log)}>
+                      <button value={log.user_id} onClick={() => fetchPracticeLog(log)}>
                         View
                       </button>
                     </td>
@@ -88,14 +88,15 @@ function PracticeLog() {
             </tbody>
           </table>
         </div>
-        {JSON.stringify(practiceLog)}
-        <table>
+        <div className='practice-log-container'>{JSON.stringify(practiceLog)}</div>
+        
+        {/* <table>
           <thead>
             <tr>
               <th></th>
             </tr>
           </thead>
-        </table>
+        </table> */}
       </div>
       <div className='practice-log'>
         <h3>Practice Log</h3>
