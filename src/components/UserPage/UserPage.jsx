@@ -17,9 +17,7 @@ function UserPage() {
       <Router>
         <StudentRoster />
         <PracticeLog />
-        <Route path='/details/:logID'>
-          <LogDetails />
-        </Route>
+      
         <LogOutButton className='btn' />
       </Router>
     </div>

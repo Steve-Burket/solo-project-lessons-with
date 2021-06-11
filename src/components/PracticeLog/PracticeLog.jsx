@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './PracticeLog.css';
 
 // Basic functional component structure for React with default state
@@ -11,6 +12,7 @@ function PracticeLog() {
 
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // LOCAL STATE
   const [heading, setHeading] = useState('Functional Component');
@@ -20,11 +22,10 @@ function PracticeLog() {
   const [improvedOn, setImprovedOn] = useState('');
   const [weakPoints, setWeakPoints] = useState('');
   const [questions, setQuestions] = useState('');
-  const [viewLog, setViewLog] = useState(false);
 
-  const displayPracticeLog = (e) => {
-    setViewLog(!viewLog);
-  };
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PRACTICE_LOG' });
+  }, []);
 
   // handle submit of practice log
   // POST to the DB
@@ -53,17 +54,12 @@ function PracticeLog() {
     setQuestions('');
   }; // end handle submit
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PRACTICE_LOG' });
-  }, []);
-
   const fetchPracticeLog = (log) => {
     dispatch({
-      type: 'FETCH_PRACTICE_LOG',
+      type: 'FETCH_PRACTICE_LOG_DETAILS',
       payload: log
     });
-    displayPracticeLog();
-    history.pushState(`details/${practiceLog.id}`);
+    history.push(`details/${practiceLog.id}`);
   };
 
   return (
@@ -95,7 +91,6 @@ function PracticeLog() {
             </tbody>
           </table>
         </div>
-        
       </div>
       <div className='practice-log'>
         <h3>Practice Log</h3>

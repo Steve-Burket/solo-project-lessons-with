@@ -3,7 +3,7 @@ import {
   HashRouter as Router,
   Route,
   Redirect,
-  Switch,
+  Switch
 } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import LogDetails from '../PracticeLog/LogDetails';
 
 import './App.css';
 
@@ -35,13 +36,13 @@ function App() {
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from='/' to='/home' />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/about"
+            path='/about'
           >
             <AboutPage />
           </Route>
@@ -53,7 +54,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path='/user'
           >
             <UserPage />
           </ProtectedRoute>
@@ -61,7 +62,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path='/info'
           >
             <InfoPage />
           </ProtectedRoute>
@@ -74,8 +75,8 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows LoginPage at /login
             exact
-            path="/login"
-            authRedirect="/user"
+            path='/login'
+            authRedirect='/user'
           >
             <LoginPage />
           </ProtectedRoute>
@@ -85,8 +86,8 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows RegisterPage at "/registration"
             exact
-            path="/registration"
-            authRedirect="/user"
+            path='/registration'
+            authRedirect='/user'
           >
             <RegisterPage />
           </ProtectedRoute>
@@ -96,11 +97,15 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
             exact
-            path="/home"
-            authRedirect="/user"
+            path='/home'
+            authRedirect='/user'
           >
             <LandingPage />
           </ProtectedRoute>
+          {/* Here is the Log Details component */}
+          <Route path='/details/:logID'>
+            <LogDetails />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

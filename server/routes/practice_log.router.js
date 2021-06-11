@@ -10,13 +10,13 @@ const {
  */
 router.get('/', (req, res) => {
   // GET route code here
-  const queryPracticeLog = `SELECT * FROM "practice_log" ORDER BY "user_id";`;
+  const queryPracticeLog = `SELECT * FROM "practice_log" ORDER BY "id";`;
   
   
   pool
     .query(queryPracticeLog)
     .then((result) => {
-      console.log(result);
+      console.log(result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
