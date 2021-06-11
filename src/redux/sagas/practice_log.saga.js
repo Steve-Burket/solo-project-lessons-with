@@ -13,7 +13,7 @@ function* submitPracticeLog(action) {
     // store practice log in redux
     // I think you want to fetch here, not set practice log to the single practice log right?
     // yield put({ type: 'SET_PRACTICE_LOG', payload: action.payload });
-    yield put({ type: 'FETCH_PRACTICE_LOG' }); // you only want this, not the above line (fetch saga calls the SET)
+    // yield put({ type: 'FETCH_PRACTICE_LOG' }); // you only want this, not the above line (fetch saga calls the SET)
 
   } catch (error) {
     console.log('Error with submitting practice log:', error);

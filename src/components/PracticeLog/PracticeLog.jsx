@@ -20,6 +20,11 @@ function PracticeLog() {
   const [improvedOn, setImprovedOn] = useState('');
   const [weakPoints, setWeakPoints] = useState('');
   const [questions, setQuestions] = useState('');
+  const [viewLog, setViewLog] = useState(false);
+
+  const displayPracticeLog = (e) => {
+    setViewLog(!viewLog);
+  };
 
   // handle submit of practice log
   // POST to the DB
@@ -57,6 +62,8 @@ function PracticeLog() {
       type: 'FETCH_PRACTICE_LOG',
       payload: log
     });
+    displayPracticeLog();
+    history.pushState(`details/${practiceLog.id}`);
   };
 
   return (
@@ -72,10 +79,10 @@ function PracticeLog() {
               </tr>
             </thead>
             <tbody>
-              {practiceLog.map((log, i) => {
+              {practiceLog.map((log) => {
                 console.log(log.date_of);
                 return (
-                  <tr key={i} value={log.date_of}>
+                  <tr key={practiceLog.id} value={practiceLog.id}>
                     <td>{log.date_of}</td>
                     <td>
                       <button onClick={() => fetchPracticeLog(log)}>
@@ -88,32 +95,7 @@ function PracticeLog() {
             </tbody>
           </table>
         </div>
-        <ul className='practice-log-container' value={date}>
-          {practiceLog.map((log, i) => {
-            return (
-              <li key={i}>
-                Date: {log.date_of}
-                <br />
-                <br />
-                Duration: {log.practice_length}
-                <br />
-                <br />
-                Topic: {log.topic}
-                <br />
-                <br />
-                Improved on: {log.improved_on}
-                <br />
-                <br />
-                Needs work: {log.weak_points}
-                <br />
-                <br />
-                Questions: {log.questions}
-                <br />
-                <br />
-              </li>
-            );
-          })}
-        </ul>
+        
       </div>
       <div className='practice-log'>
         <h3>Practice Log</h3>
