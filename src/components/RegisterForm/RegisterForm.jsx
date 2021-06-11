@@ -134,7 +134,9 @@ function RegisterForm() {
               required
               onChange={(event) => setInstrument(event.target.value)}
             >
-              <option>{instrument}</option>
+              <option disabled hidden>
+                Select
+              </option>
               {instruments.map((inst, i) => {
                 return (
                   <option key={i} value={inst}>
@@ -181,12 +183,14 @@ function RegisterForm() {
               required
               onChange={(event) => setInstructorIs(event.target.value)}
             >
-              <option selected disabled>Select</option>
+              <option name> {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
+                Select
+              </option>
               {teachers.map((teach) => {
                 console.log(teach.first_name, teach.last_name);
                 return (
-                  <option key={teach.id} value={teach.id} >
-                    {teach.first_name + ' ' + teach.last_name}
+                  <option key={teach.id} value={teach.id}>
+                    {teach.first_name} {teach.last_name}
                   </option>
                 );
               })}
