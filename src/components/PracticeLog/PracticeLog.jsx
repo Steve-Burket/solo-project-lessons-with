@@ -7,25 +7,16 @@ import './PracticeLog.css';
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function PracticeLog() {
-  const practiceLog = useSelector((store) => store.practiceLog);
-  console.log(practiceLog);
-
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // LOCAL STATE
-  const [heading, setHeading] = useState('Functional Component');
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState('');
   const [topic, setTopic] = useState('');
   const [improvedOn, setImprovedOn] = useState('');
   const [weakPoints, setWeakPoints] = useState('');
   const [questions, setQuestions] = useState('');
-
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PRACTICE_LOG' });
-  }, []);
 
   // handle submit of practice log
   // POST to the DB
@@ -54,44 +45,9 @@ function PracticeLog() {
     setQuestions('');
   }; // end handle submit
 
-  const fetchPracticeLog = (log) => {
-    dispatch({
-      type: 'FETCH_PRACTICE_LOG_DETAILS',
-      payload: log
-    });
-    history.push(`details/${practiceLog.id}`);
-  };
-
   return (
     <>
-      <div>
-        <div>
-          <h4>View Practice Log</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {practiceLog.map((log) => {
-                console.log(log.date_of);
-                return (
-                  <tr key={practiceLog.id} value={practiceLog.id}>
-                    <td>{log.date_of}</td>
-                    <td>
-                      <button onClick={() => fetchPracticeLog(log)}>
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <h2>What did you practice today, {user.first_name}?</h2>
       <div className='practice-log'>
         <h3>Practice Log</h3>
         <form onSubmit={submitPracticeLog} value={user.id}>

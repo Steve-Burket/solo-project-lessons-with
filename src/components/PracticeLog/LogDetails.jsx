@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import LogArchive from './LogArchive';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
@@ -34,6 +35,7 @@ export default function LogDetails() {
 
   return (
     <div>
+      <LogArchive />
       <h1>Practice Log: {logDetails.id}</h1>
       <section>
         <div key={logDetails.id}>

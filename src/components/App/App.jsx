@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import LogDetails from '../PracticeLog/LogDetails';
+import LogArchive from '../PracticeLog/LogArchive';
 
 import './App.css';
 
@@ -105,6 +106,11 @@ function App() {
           {/* Here is the Log Details component */}
           <Route path='/details/:logID'>
             <LogDetails />
+          </Route>
+
+          {/* Here is the Log Archives component */}
+          <Route path='/log_archive'>
+            <LogArchive />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
