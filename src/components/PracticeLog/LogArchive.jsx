@@ -6,14 +6,15 @@ export default function LogArchive() {
   // Reducer Store
   const practiceLog = useSelector((store) => store.practiceLog);
   console.log(practiceLog);
-  
+
   // HOOKS
   const history = useHistory();
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
   // Render List of Logs by Date
   useEffect(() => {
     dispatch({ type: 'FETCH_PRACTICE_LOG' });
+    dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
   }, []);
 
   // Fetch practice log that is clicked on
@@ -32,6 +33,7 @@ export default function LogArchive() {
         <table>
           <thead>
             <tr>
+              <th>Student</th>
               <th>Date</th>
               <th>Action</th>
             </tr>
@@ -41,7 +43,11 @@ export default function LogArchive() {
               console.log(log.id);
               return (
                 <tr key={i} value={practiceLog.id}>
+                  <td>
+                    {log.first_name} {log.last_name}
+                  </td>
                   <td>{log.date_of}</td>
+
                   <td>
                     <button onClick={() => fetchPracticeLog(log)}>View</button>
                   </td>

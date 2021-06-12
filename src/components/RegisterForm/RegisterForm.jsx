@@ -18,7 +18,7 @@ function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
-  const [instructorIs, setInstructorIs] = useState('');
+  const [instructorIs, setInstructorIs] = useState(0);
   const [viewInstructorList, setInstructorList] = useState(false);
 
   console.log(teachers);
@@ -183,7 +183,7 @@ function RegisterForm() {
               required
               onChange={(event) => setInstructorIs(event.target.value)}
             >
-              <option name> {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
+              <option> {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
                 Select
               </option>
               {teachers.map((teach) => {

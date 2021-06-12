@@ -29,6 +29,29 @@ WHERE "user"."instructor_is" = $1;`;
 });
 
 /**
+ * GET route for practice log
+ */
+router.get(`/student`, (req, res) => {
+  // GET route code here
+  const queryPracticeLog = `SELECT * FROM "user"
+JOIN "practice_log" ON "practice_log"."user_id" = "user"."id"
+WHERE "user"."id" = $1;`;
+  
+  
+  pool
+    .query(queryPracticeLog, [req.user.id])
+    .then((result) => {
+      console.log(result.rows);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log(`Error in practice log GET`, err);
+      // process the database error
+      res.sendStatus(500);
+    });
+});
+
+/**
  * POST route practice log
  */
 router.post('/', rejectUnauthenticated, (req, res) => {

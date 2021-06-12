@@ -11,8 +11,7 @@ function* submitPracticeLog(action) {
     yield axios.post('/practice_log', action.payload);
 
     // store practice log in redux
-    yield put({ type: 'FETCH_PRACTICE_LOG' }); 
-
+    yield put({ type: 'FETCH_PRACTICE_LOG' });
   } catch (error) {
     console.log('Error with submitting practice log:', error);
     yield put({ type: 'REGISTRATION_FAILED' });
@@ -24,14 +23,30 @@ function* fetchPracticeLogSaga() {
 
   try {
     const practiceLog = yield axios.get('/practice_log');
+    // const studentPracticeLog = yield axios.get('/practice_log/student')
     yield put({ type: 'SET_PRACTICE_LOG', payload: practiceLog.data });
+    // yield put({ type: 'SET_PRACTICE_LOG', payload: studentPracticeLog.data });
   } catch {
     console.log('GET practice log error');
   }
 }
+
+// this saga is to handle the student's view of their logs
+function* fetchStudentPracticeLogSaga() {
+  console.log('in fetchPracticeLogSaga');
+
+  try {
+    const studentPracticeLog = yield axios.get('/practice_log/student');
+    yield put({ type: 'SET_STUDENT_PRACTICE_LOG', payload: studentPracticeLog.data });
+  } catch {
+    console.log('GET practice log error');
+  }
+}
+
 function* practiceLogSaga() {
   yield takeEvery('SUBMIT_PRACTICE_LOG', submitPracticeLog);
   yield takeEvery('FETCH_PRACTICE_LOG', fetchPracticeLogSaga);
+  yield takeEvery('FETCH_STUDENT_PRACTICE_LOG', fetchStudentPracticeLogSaga);
 }
 
 export default practiceLogSaga;

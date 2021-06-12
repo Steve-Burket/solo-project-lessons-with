@@ -9,23 +9,31 @@ function StudentRoster(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const students = useSelector((store) => store.students);
+  const practiceLog = useSelector((store) => store.practiceLog);
+  
   const dispatch = useDispatch();
 
   // useEffect to render student list
   useEffect(() => {
-      dispatch({ type: 'FETCH_STUDENTS' });
+    dispatch({ type: 'FETCH_STUDENTS' });
   }, []);
 
   console.log(students);
 
   const [heading, setHeading] = useState('Student Roster');
 
-  const instruments = ['Guitar'];
+  // const instruments = ['Guitar'];
 
   // View student's list of practice log
   const viewPracticeLogs = (e) => {
     // we want to target the student clicked on
     // by ID and render the logs that belong to them
+     dispatch({
+       type: 'FETCH_PRACTICE_LOG_DETAILS',
+      //  payload: log
+     });
+     history.push(`details/${practiceLog.id}`);
+
   };
 
   return (
@@ -40,17 +48,15 @@ function StudentRoster(props) {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, k) => {
+          {students.map((student) => {
             return (
               <tr key={student.id}>
                 <td>
                   {student.first_name} {student.last_name}
                 </td>
-                {instruments.map((instrument, j) => {
-                  return <td key={j}>{instrument}</td>;
-                })}
+                <td>{student.instrument}</td>
                 <td>
-                  <button key={k} onClick={(e) => viewPracticeLogs(e)}>
+                  <button key={practiceLog.id} onClick={(e) => viewPracticeLogs(e)}>
                     View
                   </button>
                 </td>
