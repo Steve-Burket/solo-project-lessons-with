@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -8,6 +9,24 @@ router.get('/', (req, res) => {
 WHERE "is_instructor" = true;`;
   pool
     .query(queryTeachers)
+    .then((result) => {
+      console.log('here are the teachers: ', result);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('Error in getting teachers', err);
+      res.sendStatus(500);
+    });
+});
+
+// returns all students with the current user being their instructor
+router.get('/roster', (req, res) => {
+  console.log('here is the teachers ID: ', req.user);
+  
+  const queryTeachers = `SELECT * FROM "user"
+WHERE "user"."instructor_is" = $1;`;
+  pool
+    .query(queryTeachers, [req.user.id])
     .then((result) => {
       console.log('here are the teachers: ', result);
       res.send(result.rows);

@@ -109,9 +109,9 @@ function App() {
           </Route>
 
           {/* Here is the Log Archives component */}
-          <Route path='/log_archive'>
+          <ProtectedRoute exact path='/log_archive'>
             <LogArchive />
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

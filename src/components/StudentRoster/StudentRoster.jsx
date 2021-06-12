@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './StudentRoster.css';
 
@@ -8,72 +8,30 @@ import './StudentRoster.css';
 function StudentRoster(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
-  const users = useSelector((store) => store.users);
+  const students = useSelector((store) => store.students);
   const dispatch = useDispatch();
 
-  const [heading, setHeading] = useState('Student Roster');
-  const [studentFirstName, setStudentFirstName] = useState('');
-  const [studentLastName, setStudentLasttName] = useState('');
-  const [studentInstrument, setStudentInstrument] = useState('');
-  const [viewAddForm, setAddForm] = useState(false);
-  // const [studentList, setStudentList] = useState('');
+  // useEffect to render student list
+  useEffect(() => {
+    dispatch({ type: 'FETCH_STUDENTS' });
+  }, []);
 
-  const studentList = ['Johnny Smith', 'Owen Goodman', 'John Johnson'];
+  console.log(students);
+
+  const [heading, setHeading] = useState('Student Roster');
+
   const instruments = ['Guitar'];
 
-  // VIEW ADD A STUDENT FORM
-  const displayAddStudentForm = (e) => {
-    console.log('in displayAddStudentForm');
-    setAddForm(!viewAddForm);
-  };
-
-  // handle submit to save student to roster
-  // take in fields of First name, Last name
-  // and Instrument
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    let addStudent = {
-      studentFirstName,
-      studentLastName,
-      studentInstrument
-    };
-
-    // studentList = addStudent;
-
-    // clear inpust fields
-    setStudentFirstName('');
-    setStudentLasttName('');
-    setStudentInstrument('');
-  };
+  // View student's list of practice log
+  const viewPracticeLogs = (e) => {
+    // we want to target the student clicked on
+    // by ID and render the logs that belong to them
+    
+  }
 
   return (
     <div>
       <h2>{heading}</h2>
-      <button onClick={displayAddStudentForm}>+ Add Student</button>
-      {/* Will eventually move Form to it's own Component*/}
-      <div>
-        {viewAddForm && (
-          <form onSubmit={handleSubmit}>
-            <input
-              placeholder='First name'
-              value={studentFirstName}
-              onChange={(e) => setStudentFirstName(e.target.value)}
-            />
-            <input
-              placeholder='Last name'
-              value={studentLastName}
-              onChange={(e) => setStudentLasttName(e.target.value)}
-            />
-            <input
-              placeholder='Instrument'
-              value={studentInstrument}
-              onChange={(e) => setStudentInstrument(e.target.value)}
-            />
-            <input type='submit' value='Save' />
-          </form>
-        )}
-      </div>
       <table>
         <thead>
           <tr>
@@ -83,15 +41,19 @@ function StudentRoster(props) {
           </tr>
         </thead>
         <tbody>
-          {studentList.map((student, i, k) => {
+          {students.map((student, k) => {
             return (
-              <tr key={i}>
-                <td >{student}</td>
+              <tr key={student.id}>
+                <td>
+                  {student.first_name} {student.last_name}
+                </td>
                 {instruments.map((instrument, j) => {
                   return <td key={j}>{instrument}</td>;
                 })}
                 <td>
-                  <button key={k}>View</button>
+                  <button key={k} onClick={(e) => viewPracticeLogs(e)}>
+                    View
+                  </button>
                 </td>
               </tr>
             );

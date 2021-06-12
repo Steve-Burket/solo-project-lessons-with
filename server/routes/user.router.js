@@ -8,22 +8,6 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// // Route to get teachers only for student registration
-// router.get('/', (req, res) => {
-//   const queryTeachers = `SELECT * FROM "user"
-// WHERE "is_instructor" = true;`;
-//   pool
-//     .query(queryTeachers)
-//     .then((result) => {
-//       console.log('here are the teachers: ', result);
-//       res.send(result.rows);
-//     })
-//     .catch((err) => {
-//       console.log('Error in getting teachers', err);
-//       res.sendStatus(500);
-//     });
-// });
-
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)

@@ -4,6 +4,7 @@ import user from './user.reducer';
 import practiceLog from './practice_log.reducer';
 import logDetails from './log_details.reducer';
 import teachers from './teacher.reducer';
+import students from './student.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   practiceLog,
   teachers,
-  logDetails
+  logDetails,
+  students
 });
 
 export default rootReducer;
