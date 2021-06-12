@@ -103,10 +103,11 @@ function App() {
           >
             <LandingPage />
           </ProtectedRoute>
+
           {/* Here is the Log Details component */}
-          <Route path='/details/:logID'>
+          <ProtectedRoute exact path='/details/:logID'>
             <LogDetails />
-          </Route>
+          </ProtectedRoute>
 
           {/* Here is the Log Archives component */}
           <ProtectedRoute exact path='/log_archive'>
