@@ -8,7 +8,7 @@ const {
 /**
  * GET route for practice log
  */
-router.get('/', (req, res) => {
+router.get(`/`, (req, res) => {
   // GET route code here
   const queryPracticeLog = `SELECT * FROM "user"
 JOIN "practice_log" ON "practice_log"."user_id" = "user"."id"

@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import StudentRoster from '../StudentRoster/StudentRoster';
 import LogDetails from '../PracticeLog/LogDetails';
 import LogArchive from '../PracticeLog/LogArchive';
 
@@ -26,6 +27,7 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -104,8 +106,15 @@ function App() {
             <LandingPage />
           </ProtectedRoute>
 
+          {/* Here is the StudentRoster component */}
+          {user.is_instructor === true && user.id && (
+            <ProtectedRoute path={'/student'}>
+              <StudentRoster />
+            </ProtectedRoute>
+          )}
+
           {/* Here is the Log Details component */}
-          <ProtectedRoute exact path='/details/:logID'>
+          <ProtectedRoute path={`/details/:logID`}>
             <LogDetails />
           </ProtectedRoute>
 

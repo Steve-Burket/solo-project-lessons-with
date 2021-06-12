@@ -27,6 +27,12 @@ function Nav() {
           {loginLinkData.text}
         </Link>
 
+        {user.is_instructor === true && user.id && (
+          <Link className='navLink' to='/student'>
+            Roster
+          </Link>
+        )}
+
         {user.id && (
           <Link className='navLink' to='/log_archive'>
             Archive

@@ -13,7 +13,7 @@ function StudentRoster(props) {
 
   // useEffect to render student list
   useEffect(() => {
-    dispatch({ type: 'FETCH_STUDENTS' });
+      dispatch({ type: 'FETCH_STUDENTS' });
   }, []);
 
   console.log(students);
@@ -26,8 +26,7 @@ function StudentRoster(props) {
   const viewPracticeLogs = (e) => {
     // we want to target the student clicked on
     // by ID and render the logs that belong to them
-    
-  }
+  };
 
   return (
     <div>

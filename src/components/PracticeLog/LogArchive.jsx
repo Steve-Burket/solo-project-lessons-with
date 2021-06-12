@@ -37,10 +37,10 @@ export default function LogArchive() {
             </tr>
           </thead>
           <tbody>
-            {practiceLog.map((log) => {
-              console.log(log.date_of);
+            {practiceLog.map((log, i) => {
+              console.log(log.id);
               return (
-                <tr key={practiceLog.id} value={practiceLog.id}>
+                <tr key={i} value={practiceLog.id}>
                   <td>{log.date_of}</td>
                   <td>
                     <button onClick={() => fetchPracticeLog(log)}>View</button>
