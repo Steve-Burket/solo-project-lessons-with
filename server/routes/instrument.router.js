@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 /**
  * POST route for instrument
  */
-router.post('/practice-log', (req, res) => {
+router.post('/', (req, res) => {
   // POST route code here
   const instrument = req.body.instrument;
 

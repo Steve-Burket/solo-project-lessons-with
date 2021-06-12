@@ -28,11 +28,11 @@ WHERE "user"."instructor_is" = $1;`;
   pool
     .query(queryTeachers, [req.user.id])
     .then((result) => {
-      console.log('here are the teachers: ', result);
+      console.log('here are the students: ', result);
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('Error in getting teachers', err);
+      console.log('Error in getting students', err);
       res.sendStatus(500);
     });
 });
