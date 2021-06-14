@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import practiceLogSaga from './practice_log.saga';
 import teacherSaga from './teacher.saga';
 import studentSaga from './student.saga';
+import instrumentSaga from './instrument.saga';
 
 
 // rootSaga is the primary saga.
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     userSaga(),
     practiceLogSaga(),
     teacherSaga(),
-    studentSaga()
+    studentSaga(),
+    instrumentSaga()
   ]);
 }

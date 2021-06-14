@@ -46,13 +46,19 @@ function* fetchStudentPracticeLogSaga() {
 }
 
 // worker Saga: will be fired on "UPDATE_LOG"
-function* editLog(action, payload) {
-  try {
-    // passes the practice log from the payload to the server
-    const updatedLog = yield axios.put(`/practice_log/student/${action.payload.id}`, payload);
+function* editLog(action) {
 
-    yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG', payload: updatedLog.data
-  });
+  try {
+    console.log('Here is the update data:', action.payload);
+    
+    // passes the practice log from the payload to the server
+    const updatedLog = yield axios.put(`/practice_log/student`, action.payload);
+    
+    yield put({
+      type: 'FETCH_STUDENT_PRACTICE_LOG',
+      payload: updatedLog.data
+      // yield put({ type: 'SUBMIT_PRACTICE_LOG', payload: updatedLog.data
+    });
   } catch (error) {
     console.log('Error with submitting updated practice log:', error);
     yield put({ type: 'REGISTRATION_FAILED' });

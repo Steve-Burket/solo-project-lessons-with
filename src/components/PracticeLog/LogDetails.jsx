@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LogArchive from './LogArchive';
 import EditLogForm from './EditLogForm';
+import moment from 'moment';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
@@ -43,15 +44,19 @@ export default function LogDetails() {
   const deleteLog = () => {
     // alert needs to be fixed so it will follow through with
     // delete if alert box is clicked yes
-    alert(
+
+    let remove = confirm(
       'Are you sure you would like to delete this log? Once deleted it can not be retrieved again.'
     );
-
-    dispatch({
-      type: 'DELETE_LOG',
-      payload: logDetails.id
-    });
-    history.push(`/log_archive`);
+    if (remove == true) {
+      dispatch({
+        type: 'DELETE_LOG',
+        payload: logDetails.id
+      });
+      history.push(`/log_archive`);
+    } else {
+      return;
+    }
   };
 
   // Conditionally render VIEW Practice Log Form
@@ -84,7 +89,7 @@ export default function LogDetails() {
         <div key={logDetails.id}>
           <ul value={logDetails.date_of}>
             <li>
-              Date: {logDetails.date_of}
+              Date: {moment(logDetails.date_of).format('MMMM Do YYYY')}
               <br />
               <br />
               Duration: {logDetails.practice_length}

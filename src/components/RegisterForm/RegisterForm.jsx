@@ -4,11 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const teachers = useSelector((store) => store.teachers);
+  // const instruments = useSelector((store) => store.instruments);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_TEACHERS' });
   }, []);
+
+  // hard coded instruments for now
+  // will bring in DB later
+  const instruments = [
+    'Guitar',
+    'Mandolin',
+    'Bass',
+    'Ukulele',
+    'Vocals',
+    'Piano',
+    'Drums'
+  ];
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -28,7 +41,6 @@ function RegisterForm() {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
   };
-
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -170,7 +182,9 @@ function RegisterForm() {
               required
               onChange={(event) => setInstructorIs(event.target.value)}
             >
-              <option> {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
+              <option>
+                {' '}
+                {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
                 Select
               </option>
               {teachers.map((teach) => {

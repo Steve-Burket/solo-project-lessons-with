@@ -17,7 +17,7 @@ WHERE "user"."instructor_is" = $1;`;
   pool
     .query(queryPracticeLog, [req.user.id])
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -39,7 +39,7 @@ WHERE "user"."id" = $1;`;
   pool
     .query(queryPracticeLog, [req.user.id])
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -83,22 +83,23 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 // PUT router to allow edit of practice log
-router.put('/student/:id', (req, res) => {
+router.put('/student', (req, res) => {
   const updatedPracticeLog = req.body;
   console.log('Here is the updated log:', req.body);
+  
 
   const queryText = `UPDATE "practice_log"
   SET date_of = $1, practice_length = $2, topic = $3, improved_on = $4, weak_points = $5, questions = $6
   WHERE id = $7;`;
 
-  const queryValues = [
-    updatedPracticeLog.date_of,
-    updatedPracticeLog.practice_length,
-    updatedPracticeLog.topic,
-    updatedPracticeLog.improved_on,
-    updatedPracticeLog.weak_points,
-    updatedPracticeLog.questions,
-    updatedPracticeLog.id
+  const queryValues = [ 
+    updatedPracticeLog.date_of,  // $1
+    updatedPracticeLog.practice_length, // $2
+    updatedPracticeLog.topic, //$ 3
+    updatedPracticeLog.improved_on, // $4
+    updatedPracticeLog.weak_points, // $5
+    updatedPracticeLog.questions, // $6
+    updatedPracticeLog.id // $7
   ];
 
   pool

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 export default function LogArchive() {
   // const [archive, setArchive] = useState([]);
@@ -64,7 +65,7 @@ export default function LogArchive() {
                     {log.first_name} {log.last_name}
                   </td>
                   <td>{log.instrument}</td>
-                  <td>{log.date_of}</td>
+                  <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
 
                   <td>
                     <button onClick={() => fetchPracticeLog(log)}>View</button>

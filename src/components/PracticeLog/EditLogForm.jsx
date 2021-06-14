@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import practiceLogSaga from '../../redux/sagas/practice_log.saga';
+import moment from 'moment';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,7 +13,9 @@ function EditLogForm() {
   const history = useHistory();
 
   // LOCAL STATE
-  const [date, setDate] = useState(logDetails.date_of);
+  const [date, setDate] = useState(
+    moment(logDetails.date_of).format('MM/DD/YYYY')
+  );
   const [duration, setDuration] = useState(logDetails.practice_length);
   const [topic, setTopic] = useState(logDetails.topic);
   const [improvedOn, setImprovedOn] = useState(logDetails.improved_on);
@@ -29,23 +31,23 @@ function EditLogForm() {
   // handle edit of practice log
   // PUT to the DB
   const updatePracticeLog = (event) => {
-    console.log('in updatePracticeLog');
+    console.log('practice duration: ', duration);
     event.preventDefault();
 
     alert('Your Practice Log has been updated');
 
-    dispatch({
-      type: 'UPDATE_LOG',
-      payload: {
-        date_of: date,
-        practice_length: duration,
-        topic: topic,
-        improved_on: improvedOn,
-        weak_points: weakPoints,
-        questions: questions,
-        practice_log: logDetails.id
-      }
-    });
+      dispatch({
+        type: 'UPDATE_LOG',
+        payload: {
+          date_of: date,
+          practice_length: duration,
+          topic: topic,
+          improved_on: improvedOn,
+          weak_points: weakPoints,
+          questions: questions,
+          id: logDetails.id
+        }
+      });
 
     // clear input fields
     setDate('');
@@ -134,6 +136,7 @@ function EditLogForm() {
           </label>
           <br />
           <input className='btn' type='submit' name='submit' value='Save' />
+          <input className='btn' type='cancel' name='cancel' defaultValue='Cancel' onClick={() => history.push('/details/:logID')}/>
         </form>
       </div>
     </>

@@ -5,6 +5,7 @@ import practiceLog from './practice_log.reducer';
 import logDetails from './log_details.reducer';
 import teachers from './teacher.reducer';
 import students from './student.reducer';
+import instruments from './instrument.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   practiceLog,
   logDetails,
   teachers,
-  students
+  students,
+  instruments
 });
 
 export default rootReducer;
