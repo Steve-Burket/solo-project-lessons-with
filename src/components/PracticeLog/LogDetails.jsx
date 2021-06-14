@@ -1,11 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LogArchive from './LogArchive';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
   const logDetails = useSelector((store) => store.logDetails);
+  const user = useSelector((store) => store.user);
+
+  // Local State
+  const [viewPracticeLogForm, setViewPracticeLogForm] = useState(false);
+  const [viewDeleteButton, setViewDeleteButton] = useState(false);
 
   console.log(logDetails);
 
@@ -44,6 +49,27 @@ export default function LogDetails() {
     history.push(`/log_archive`);
   };
 
+  // VIEW Practice Log Form
+  // const displayInstructorField = (e) => {
+  //   console.log('in displayInstructorField');
+  //   setInstructorList(!viewInstructorList);
+  // };
+
+  // VIEW Delete Log Button
+  const displayDeleteButton = (e) => {
+    console.log('in displayDeleteButton');
+    setViewDeleteButton(!viewDeleteButton);
+  };
+
+  // function to delete a log
+  const editLog = () => {
+    dispatch({
+      type: 'UPDATE_LOG',
+      payload: logDetails.id
+    });
+    history.push(`/details/${logDetails.id}`);
+  };
+
   return (
     <div>
       <LogArchive />
@@ -73,7 +99,12 @@ export default function LogDetails() {
             </li>
           </ul>
         </div>
-        <button onClick={deleteLog}>Delete Log</button>
+        {viewDeleteButton && user.is_instructor === false && (
+          <button onClick={deleteLog}>Delete Log</button>
+        )}
+        {user.is_instructor === false && (
+          <button onClick={editLog} onClick={displayDeleteButton}>Edit Log</button>
+        )}
       </section>
     </div>
   );

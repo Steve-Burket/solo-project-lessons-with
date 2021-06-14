@@ -45,6 +45,20 @@ function* fetchStudentPracticeLogSaga() {
   }
 }
 
+// worker Saga: will be fired on "SUBMIT_PRACTICE_LOG" actions
+function* editLog(action) {
+  try {
+    // passes the practice log from the payload to the server
+    yield axios.put(`/practice_log/${action.payload}`);
+
+    // store practice log in redux
+    yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+  } catch (error) {
+    console.log('Error with submitting practice log:', error);
+    yield put({ type: 'REGISTRATION_FAILED' });
+  }
+}
+
 // Create a saga to DELETE fruit from the server
 function* deleteLog(action) {
   try {
@@ -60,6 +74,7 @@ function* practiceLogSaga() {
   yield takeEvery('FETCH_PRACTICE_LOG', fetchPracticeLogSaga);
   yield takeEvery('FETCH_STUDENT_PRACTICE_LOG', fetchStudentPracticeLogSaga);
   yield takeEvery('DELETE_LOG', deleteLog);
+   yield takeEvery('UPDATE_LOG', editLog);
 }
 
 export default practiceLogSaga;

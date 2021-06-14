@@ -16,7 +16,8 @@ function UserPage() {
 
       {user.is_instructor === true && <StudentRoster />}
 
-      <PracticeLog />
+      {user.is_instructor === false && <PracticeLog />}
+      
       <LogOutButton className='btn' />
     </div>
   );

@@ -28,20 +28,7 @@ function RegisterForm() {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
   };
-  // hard coded instruments for now
-  // will bring in DB later
-  const instruments = [
-    'Guitar',
-    'Mandolin',
-    'Bass',
-    'Ukulele',
-    'Vocals',
-    'Piano',
-    'Drums'
-  ];
 
-  // Teacher's list; will bring in from DB later
-  // const teacher = ['Steve', 'Nate', 'Alex', 'Kara', 'Emily'];
 
   const registerUser = (event) => {
     event.preventDefault();
