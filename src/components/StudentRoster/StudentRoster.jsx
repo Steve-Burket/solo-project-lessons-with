@@ -10,7 +10,7 @@ function StudentRoster(props) {
   // a default value of 'Functional Component'
   const students = useSelector((store) => store.students);
   const practiceLog = useSelector((store) => store.practiceLog);
-  
+
   const dispatch = useDispatch();
 
   // useEffect to render student list
@@ -28,12 +28,11 @@ function StudentRoster(props) {
   const viewPracticeLogs = (e) => {
     // we want to target the student clicked on
     // by ID and render the logs that belong to them
-     dispatch({
-       type: 'FETCH_PRACTICE_LOG_DETAILS',
+    dispatch({
+      type: 'FETCH_PRACTICE_LOG_DETAILS'
       //  payload: log
-     });
-     history.push(`details/${practiceLog.id}`);
-
+    });
+    history.push(`details/${practiceLog.id}`);
   };
 
   return (
@@ -56,9 +55,8 @@ function StudentRoster(props) {
                 </td>
                 <td>{student.instrument}</td>
                 <td>
-                  <button key={practiceLog.id} onClick={(e) => viewPracticeLogs(e)}>
-                    View
-                  </button>
+                  {/* <button key={practiceLog.user_id} onClick={(e) => viewPracticeLogs(e)}> */}
+                  <button key={practiceLog.id}>View</button>
                 </td>
               </tr>
             );

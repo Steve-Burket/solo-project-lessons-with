@@ -31,7 +31,8 @@ function Nav() {
   return (
     <div className='nav'>
       <Link to='/home'>
-        <h2 className='nav-title'>LESSONS WITH {user.instructor_is}</h2> {/* <-- Needs to be teacher's first name instead of ID*/}
+        <h2 className='nav-title'>LESSONS WITH {user.instructor_is}</h2>{' '}
+        {/* <-- Needs to be teacher's first name instead of ID*/}
       </Link>
       <div>
         <Link className='navLink' to={loginLinkData.path}>

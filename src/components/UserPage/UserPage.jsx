@@ -1,4 +1,4 @@
-import { useState, react } from 'react';
+import { useEffect, useState, react } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import StudentRoster from '../StudentRoster/StudentRoster.jsx';
@@ -13,7 +13,7 @@ function UserPage() {
       <h2>Hello, {user.first_name}!</h2>
       <hr />
       <p>Your primary instrument is: {user.instrument}</p>
-      
+
       {user.is_instructor === true && <StudentRoster />}
 
       <PracticeLog />

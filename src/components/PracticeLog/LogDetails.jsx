@@ -31,12 +31,13 @@ export default function LogDetails() {
         payload: foundLog[0]
       });
     }
+     dispatch({ type: 'FETCH_PRACTICE_LOG' });
   }, []);
 
   return (
     <div>
       <LogArchive />
-      <h1>Practice Log: {logDetails.id}</h1>
+      <h1>{logDetails.first_name}'s Practice Log</h1>
       <section>
         <div key={logDetails.id}>
           <ul className='practice-log-container' value={logDetails.date_of}>

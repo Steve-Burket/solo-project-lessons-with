@@ -13,8 +13,7 @@ router.get(`/`, (req, res) => {
   const queryPracticeLog = `SELECT * FROM "user"
 JOIN "practice_log" ON "practice_log"."user_id" = "user"."id"
 WHERE "user"."instructor_is" = $1;`;
-  
-  
+
   pool
     .query(queryPracticeLog, [req.user.id])
     .then((result) => {
@@ -36,8 +35,7 @@ router.get(`/student`, (req, res) => {
   const queryPracticeLog = `SELECT * FROM "user"
 JOIN "practice_log" ON "practice_log"."user_id" = "user"."id"
 WHERE "user"."id" = $1;`;
-  
-  
+
   pool
     .query(queryPracticeLog, [req.user.id])
     .then((result) => {
@@ -57,7 +55,7 @@ WHERE "user"."id" = $1;`;
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log('POSTing practice log: ', req.body);
-  
+
   const user_id = req.user.id;
   const date_of = req.body.date_of;
   const practice_length = req.body.practice_length;

@@ -1,8 +1,12 @@
 const express = require('express');
+const {
+  rejectUnauthenticated
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+// This is to GET  the teacher's student roster
+router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('here is the req.user.id: ', req.user.id);
 
   const queryStudents = `SELECT * FROM "user"

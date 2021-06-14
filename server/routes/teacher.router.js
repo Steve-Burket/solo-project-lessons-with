@@ -3,8 +3,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// Route to get teachers only for student registration
-router.get('/', (req, res) => {
+// Route to get teachers. only for student registration
+router.get('/', rejectUnauthenticated, (req, res) => {
   const queryTeachers = `SELECT * FROM "user"
 WHERE "is_instructor" = true;`;
   pool
@@ -20,8 +20,8 @@ WHERE "is_instructor" = true;`;
 });
 
 // returns all students with the current user being their instructor
-router.get('/roster', (req, res) => {
-  console.log('here is the teachers ID: ', req.user);
+router.get('/roster', rejectUnauthenticated, (req, res) => {
+  console.log('here is the teachers ID: ', req.user.id);
   
   const queryTeachers = `SELECT * FROM "user"
 WHERE "user"."instructor_is" = $1;`;

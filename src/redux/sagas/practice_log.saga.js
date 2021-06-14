@@ -4,9 +4,6 @@ import axios from 'axios';
 // worker Saga: will be fired on "SUBMIT_PRACTICE_LOG" actions
 function* submitPracticeLog(action) {
   try {
-    // clear any existing error on the practice log page
-    // yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
-
     // passes the practice log from the payload to the server
     yield axios.post('/practice_log', action.payload);
 
@@ -23,9 +20,11 @@ function* fetchPracticeLogSaga() {
 
   try {
     const practiceLog = yield axios.get('/practice_log');
+    console.log('here is the practice log coming into the saga: ', practiceLog);
+
     // const studentPracticeLog = yield axios.get('/practice_log/student')
-    yield put({ type: 'SET_PRACTICE_LOG', payload: practiceLog.data });
     // yield put({ type: 'SET_PRACTICE_LOG', payload: studentPracticeLog.data });
+    yield put({ type: 'SET_PRACTICE_LOG', payload: practiceLog.data });
   } catch {
     console.log('GET practice log error');
   }
@@ -37,9 +36,12 @@ function* fetchStudentPracticeLogSaga() {
 
   try {
     const studentPracticeLog = yield axios.get('/practice_log/student');
-    yield put({ type: 'SET_STUDENT_PRACTICE_LOG', payload: studentPracticeLog.data });
+    yield put({
+      type: 'SET_STUDENT_PRACTICE_LOG',
+      payload: studentPracticeLog.data
+    });
   } catch {
-    console.log('GET practice log error');
+    console.log('GET student view of practice log error');
   }
 }
 

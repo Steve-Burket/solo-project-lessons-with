@@ -118,10 +118,18 @@ function App() {
             <LogDetails />
           </ProtectedRoute>
 
+          {/* <Route path={`/details/:id`}>
+            <LogDetails />
+          </Route> */}
+
           {/* Here is the Log Archives component */}
           <ProtectedRoute exact path='/log_archive'>
             <LogArchive />
           </ProtectedRoute>
+
+          {/* <Route exact path='/log_archive'>
+            <LogArchive />
+          </Route> */}
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

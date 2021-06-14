@@ -17,8 +17,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   practiceLog,
-  teachers,
   logDetails,
+  teachers,
   students
 });
 
