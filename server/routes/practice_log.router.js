@@ -28,7 +28,7 @@ WHERE "user"."instructor_is" = $1;`;
 });
 
 /**
- * GET route for practice log
+ * GET route for student's view of practice log
  */
 router.get(`/student`, (req, res) => {
   // GET route code here
@@ -79,6 +79,49 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('Error in practice log POST', err);
+    });
+});
+
+// PUT router to allow edit of practice log
+router.put('/:id', (req, res) => {
+  const updatedPracticeLog = req.body;
+  console.log('Here is the log to be updated:', req.body);
+
+  const queryText = `UPDATE "practice_log"
+  SET date_of = $1, practice_length = $2, topic = $3, improved_on = $4, weak_points = $5, questions = $6
+  WHERE id = $7;`;
+
+  const queryValues = [
+    updatedPracticeLog.date_of,
+    updatedPracticeLog.practice_length,
+    updatedPracticeLog.topic,
+    updatedPracticeLog.improved_on,
+    updatedPracticeLog.weak_points,
+    updatedPracticeLog.questions,
+    updatedPracticeLog.id
+  ];
+
+  pool
+    .query(queryText, queryValues)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('Error completing SELECT log query', err);
+      res.sendStatus(500);
+    });
+});
+
+// DELETE a practice log
+router.delete('/:id', (req, res) => {
+  pool
+    .query('DELETE FROM "practice_log" WHERE id=$1', [req.params.id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Error DELETE /practice_log', error);
+      res.sendStatus(500);
     });
 });
 

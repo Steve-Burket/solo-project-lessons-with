@@ -35,13 +35,22 @@ export default function LogDetails() {
     // dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
   }, [dispatch]);
 
+  // function to delete a log
+  const deleteLog = () => {
+    dispatch({
+      type: 'DELETE_LOG',
+      payload: logDetails.id
+    });
+
+  };
+
   return (
     <div>
       <LogArchive />
       <h1>{logDetails.first_name}'s Practice Log</h1>
-      <section>
+      <section className='practice-log-container'>
         <div key={logDetails.id}>
-          <ul className='practice-log-container' value={logDetails.date_of}>
+          <ul value={logDetails.date_of}>
             <li>
               Date: {logDetails.date_of}
               <br />
@@ -64,6 +73,7 @@ export default function LogDetails() {
             </li>
           </ul>
         </div>
+        <button onClick={deleteLog}>Delete Log</button>
       </section>
     </div>
   );

@@ -45,10 +45,21 @@ function* fetchStudentPracticeLogSaga() {
   }
 }
 
+// Create a saga to DELETE fruit from the server
+function* deleteLog(action) {
+  try {
+    yield axios.delete(`/practice_log/${action.payload}`);
+    yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+  } catch (err) {
+    console.log('Error DELETEing fruit', err);
+  }
+}
+
 function* practiceLogSaga() {
   yield takeEvery('SUBMIT_PRACTICE_LOG', submitPracticeLog);
   yield takeEvery('FETCH_PRACTICE_LOG', fetchPracticeLogSaga);
   yield takeEvery('FETCH_STUDENT_PRACTICE_LOG', fetchStudentPracticeLogSaga);
+  yield takeEvery('DELETE_LOG', deleteLog);
 }
 
 export default practiceLogSaga;
