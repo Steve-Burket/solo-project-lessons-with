@@ -41,7 +41,7 @@ export default function LogDetails() {
       type: 'DELETE_LOG',
       payload: logDetails.id
     });
-
+    history.push(`/log_archive`);
   };
 
   return (
