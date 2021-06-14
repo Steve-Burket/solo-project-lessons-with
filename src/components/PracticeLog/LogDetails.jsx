@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LogArchive from './LogArchive';
+import EditLogForm from './EditLogForm';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
@@ -12,7 +13,7 @@ export default function LogDetails() {
   const [viewPracticeLogForm, setViewPracticeLogForm] = useState(false);
   const [viewDeleteButton, setViewDeleteButton] = useState(false);
 
-  console.log(logDetails);
+  console.log('Here are the log details', logDetails);
 
   // Hooks
   const history = useHistory();
@@ -36,12 +37,16 @@ export default function LogDetails() {
         payload: foundLog[0]
       });
     }
-    // dispatch({ type: 'FETCH_PRACTICE_LOG' });
-    // dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
   }, [dispatch]);
 
   // function to delete a log
   const deleteLog = () => {
+    // alert needs to be fixed so it will follow through with
+    // delete if alert box is clicked yes
+    alert(
+      'Are you sure you would like to delete this log? Once deleted it can not be retrieved again.'
+    );
+
     dispatch({
       type: 'DELETE_LOG',
       payload: logDetails.id
@@ -49,19 +54,20 @@ export default function LogDetails() {
     history.push(`/log_archive`);
   };
 
-  // VIEW Practice Log Form
-  // const displayInstructorField = (e) => {
-  //   console.log('in displayInstructorField');
-  //   setInstructorList(!viewInstructorList);
-  // };
+  // Conditionally render VIEW Practice Log Form
+  const displayPracticeLogForm = (e) => {
+    console.log('in displayPracticeLogForm');
+    setViewPracticeLogForm(!viewPracticeLogForm);
+  };
 
   // VIEW Delete Log Button
   const displayDeleteButton = (e) => {
+    displayPracticeLogForm();
     console.log('in displayDeleteButton');
     setViewDeleteButton(!viewDeleteButton);
   };
 
-  // function to delete a log
+  // function to update a log
   const editLog = () => {
     dispatch({
       type: 'UPDATE_LOG',
@@ -99,13 +105,17 @@ export default function LogDetails() {
             </li>
           </ul>
         </div>
+
+        {user.is_instructor === false && (
+          <button onClick={editLog} onClick={displayDeleteButton}>
+            Edit Log
+          </button>
+        )}
         {viewDeleteButton && user.is_instructor === false && (
           <button onClick={deleteLog}>Delete Log</button>
         )}
-        {user.is_instructor === false && (
-          <button onClick={editLog} onClick={displayDeleteButton}>Edit Log</button>
-        )}
       </section>
+      {viewPracticeLogForm && <EditLogForm />}
     </div>
   );
 }
