@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import './StudentRoster.css';
 
 // Basic functional component structure for React with default state
@@ -12,32 +14,26 @@ function StudentRoster(props) {
   const practiceLog = useSelector((store) => store.practiceLog);
 
   const dispatch = useDispatch();
-
-  // useEffect to render student list
-  useEffect(() => {
-    dispatch({ type: 'FETCH_STUDENTS' });
-  }, []);
+  const history = useHistory();
 
   console.log(students);
-
-  const [heading, setHeading] = useState('Student Roster');
 
   // const instruments = ['Guitar'];
 
   // View student's list of practice log
-  const viewPracticeLogs = (e) => {
+  const viewStudentDetails = (studentId) => {
     // we want to target the student clicked on
     // by ID and render the logs that belong to them
-    dispatch({
-      type: 'FETCH_PRACTICE_LOG_DETAILS'
-      //  payload: log
-    });
-    history.push(`details/${practiceLog.id}`);
+    // dispatch({
+    //   type: 'FETCH_PRACTICE_LOG',
+    //    payload: studentId
+    // });
+    history.push(`/student/details/${studentId}`);
   };
 
   return (
     <div>
-      <h2>{heading}</h2>
+      <h2>'Student Roster'</h2>
       <table>
         <thead>
           <tr>
@@ -55,8 +51,9 @@ function StudentRoster(props) {
                 </td>
                 <td>{student.instrument}</td>
                 <td>
-                  {/* <button key={practiceLog.user_id} onClick={(e) => viewPracticeLogs(e)}> */}
-                  <button key={practiceLog.id}>View</button>
+                  <button onClick={() => viewStudentDetails(student.id)}>
+                    View
+                  </button>
                 </td>
               </tr>
             );

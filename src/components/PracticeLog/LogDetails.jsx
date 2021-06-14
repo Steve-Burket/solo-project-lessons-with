@@ -7,38 +7,26 @@ import moment from 'moment';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
-  const logDetails = useSelector((store) => store.logDetails);
+  // const logDetails = useSelector((store) => store.logDetails);
   const user = useSelector((store) => store.user);
 
   // Local State
   const [viewPracticeLogForm, setViewPracticeLogForm] = useState(false);
   const [viewDeleteButton, setViewDeleteButton] = useState(false);
 
-  console.log('Here are the log details', logDetails);
-
   // Hooks
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  console.log('here are the params:', params);
 
-  // load data on render
-  useEffect(() => {
-    // target individual log by params ID
-    const logID = params;
+  const foundLog = practiceLog.find((log) => {
+    console.log(log);
+    console.log(params.logID);
+    return log.id === Number(params.logID);
+  });
 
-    // filter through full log list
-    // to pull out one that matches the ID
-    const foundLog = practiceLog.filter((log) => log.id === logID);
-
-    // condition checking if the found log length
-    // is greater than zero dispatch to log details reducer
-    if (foundLog.length > 0) {
-      dispatch({
-        type: 'FETCH_PRACTICE_LOG_DETAILS',
-        payload: foundLog[0]
-      });
-    }
-  }, [dispatch]);
+  console.log('here is the found log:', foundLog);
 
   // function to delete a log
   const deleteLog = () => {
@@ -51,9 +39,9 @@ export default function LogDetails() {
     if (remove == true) {
       dispatch({
         type: 'DELETE_LOG',
-        payload: logDetails.id
+        payload: foundLog.id
       });
-      history.push(`/log_archive`);
+      history.push(`/log/archive`);
     } else {
       return;
     }
@@ -72,39 +60,33 @@ export default function LogDetails() {
     setViewDeleteButton(!viewDeleteButton);
   };
 
-  // function to update a log
-  const editLog = () => {
-    dispatch({
-      type: 'UPDATE_LOG',
-      payload: logDetails.id
-    });
-    history.push(`/details/${logDetails.id}`);
-  };
-
+  if (!foundLog) {
+    return <h1>loading...</h1>;
+  }
   return (
     <div>
-      <LogArchive />
-      <h1>{logDetails.first_name}'s Practice Log</h1>
+      {/* <LogArchive /> */}
+      <h1>{foundLog.first_name}'s Practice Log</h1>
       <section className='practice-log-container'>
-        <div key={logDetails.id}>
-          <ul value={logDetails.date_of}>
+        <div key={foundLog.id}>
+          <ul value={foundLog.date_of}>
             <li>
-              Date: {moment(logDetails.date_of).format('MMMM Do YYYY')}
+              Date: {moment(foundLog.date_of).format('MMMM Do YYYY')}
               <br />
               <br />
-              Duration: {logDetails.practice_length}
+              Duration: {foundLog.practice_length}
               <br />
               <br />
-              Topic: {logDetails.topic}
+              Topic: {foundLog.topic}
               <br />
               <br />
-              Improved on: {logDetails.improved_on}
+              Improved on: {foundLog.improved_on}
               <br />
               <br />
-              Needs work: {logDetails.weak_points}
+              Needs work: {foundLog.weak_points}
               <br />
               <br />
-              Questions: {logDetails.questions}
+              Questions: {foundLog.questions}
               <br />
               <br />
             </li>
@@ -112,15 +94,13 @@ export default function LogDetails() {
         </div>
 
         {user.is_instructor === false && (
-          <button onClick={editLog} onClick={displayDeleteButton}>
-            Edit Log
-          </button>
+          <button onClick={displayDeleteButton}>Edit Log</button>
         )}
         {viewDeleteButton && user.is_instructor === false && (
           <button onClick={deleteLog}>Delete Log</button>
         )}
       </section>
-      {viewPracticeLogForm && <EditLogForm />}
+      {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
     </div>
   );
 }

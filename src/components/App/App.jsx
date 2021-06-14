@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import StudentRoster from '../StudentRoster/StudentRoster';
+import StudentDetails from '../StudentRoster/StudentDetails';
+import PracticeLog from '../PracticeLog/PracticeLog';
 import LogDetails from '../PracticeLog/LogDetails';
 import LogArchive from '../PracticeLog/LogArchive';
 
@@ -31,6 +33,12 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_STUDENTS' });
+    if (user.is_instructor === true) {
+      dispatch({ type: 'FETCH_PRACTICE_LOG' });
+    } else {
+      dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+    }
   }, [dispatch]);
 
   return (
@@ -108,13 +116,26 @@ function App() {
 
           {/* Here is the StudentRoster component */}
           {user.is_instructor === true && user.id && (
-            <ProtectedRoute path={'/student'}>
+            <ProtectedRoute exact path={'/student'}>
               <StudentRoster />
             </ProtectedRoute>
           )}
 
+          {/* {user.id && (
+            <ProtectedRoute path={'/'}>
+              <PracticeLog />
+            </ProtectedRoute>
+          )} */}
+
+          {/* Here is the StudentRoster component */}
+          {user.is_instructor === true && user.id && (
+            <ProtectedRoute path={'/student/details/:studentID'}>
+              <StudentDetails />
+            </ProtectedRoute>
+          )}
+
           {/* Here is the Log Details component */}
-          <ProtectedRoute path={`/details/:logID`}>
+          <ProtectedRoute path={`/log/details/:logID`}>
             <LogDetails />
           </ProtectedRoute>
 
@@ -123,13 +144,9 @@ function App() {
           </Route> */}
 
           {/* Here is the Log Archives component */}
-          <ProtectedRoute exact path='/log_archive'>
+          <ProtectedRoute exact path='/log/archive'>
             <LogArchive />
           </ProtectedRoute>
-
-          {/* <Route exact path='/log_archive'>
-            <LogArchive />
-          </Route> */}
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

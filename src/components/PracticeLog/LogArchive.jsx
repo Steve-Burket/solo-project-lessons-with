@@ -1,46 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import moment from 'moment';
+import LogDetails from './LogDetails';
 
 export default function LogArchive() {
-  // const [archive, setArchive] = useState([]);
-
-  // function refreshLog() {
-  //   const log = [];
-  //   console.log(log);
-  //   setArchive((archive) => [...archive, log]);
-  // }
-
   // Reducer Store
   const practiceLog = useSelector((store) => store.practiceLog);
-  const details = useSelector((store) => store.logDetails);
-  const user = useSelector((store) => store.user)
-  console.log([practiceLog]);
-  console.log('here are the log details:', details);
+  // const details = useSelector((store) => store.logDetails);
+  const user = useSelector((store) => store.user);
+  console.log(practiceLog);
+  // console.log('here are the log details:', details);
 
   // HOOKS
   const history = useHistory();
   const dispatch = useDispatch();
-
-  // Render List of Logs by Name, Instrument, and Date
-  useEffect(() => {
-    if (user.is_instructor === true) {
-      dispatch({ type: 'FETCH_PRACTICE_LOG' });
-    } else {
-      dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
-    }
-
-    // refreshLog();
-  }, []);
+  // const params = useParams();
 
   // Fetch practice log that is clicked on
   const fetchPracticeLog = (log) => {
-    dispatch({
-      type: 'FETCH_PRACTICE_LOG_DETAILS',
-      payload: log
-    });
-    history.push(`details/${details.id}`);
+    // dispatch({
+    //   type: 'FETCH_PRACTICE_LOG_DETAILS',
+    //   payload: log
+    // });
+    history.push(`/log/details/${log.id}`);
   };
 
   return (

@@ -6,9 +6,10 @@ import moment from 'moment';
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function EditLogForm() {
+function EditLogForm(props) {
   const user = useSelector((store) => store.user);
-  const logDetails = useSelector((store) => store.logDetails);
+  // const logDetails = useSelector((store) => store.logDetails);
+  const logDetails = props.practiceLog;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -58,7 +59,7 @@ function EditLogForm() {
     setQuestions('');
 
     // bring back to archive view
-    history.push(`/log_archive`);
+    history.push(`/log/archive`);
   }; // end handle submit
 
   return (
@@ -136,7 +137,7 @@ function EditLogForm() {
           </label>
           <br />
           <input className='btn' type='submit' name='submit' value='Save' />
-          <input className='btn' type='cancel' name='cancel' defaultValue='Cancel' onClick={() => history.push('/details/:logID')}/>
+          <input className='btn' type='cancel' name='cancel' defaultValue='Cancel' onClick={() => history.push('/log/details/:logID')}/>
         </form>
       </div>
     </>

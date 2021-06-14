@@ -15,7 +15,7 @@ function Nav() {
     dispatch({ type: 'FETCH_TEACHERS' });
   }, []);
 
-  console.log(teacher.first_name);
+  console.log(teacher);
   console.log(user.instructor_is);
 
   let loginLinkData = {
@@ -31,7 +31,7 @@ function Nav() {
   return (
     <div className='nav'>
       <Link to='/home'>
-        <h2 className='nav-title'>LESSONS WITH {user.instructor_is}</h2>{' '}
+        <h2 className='nav-title'>LESSONS WITH {user.instructor_is}</h2>
         {/* <-- Needs to be teacher's first name instead of ID*/}
       </Link>
       <div>
@@ -46,7 +46,7 @@ function Nav() {
         )}
 
         {user.id && (
-          <Link className='navLink' to='/log_archive'>
+          <Link className='navLink' to='/log/archive'>
             Archive
           </Link>
         )}
