@@ -23,7 +23,7 @@ export default function LogDetails() {
     // to pull out one that matches the ID
     const foundLog = practiceLog.filter((log) => log.id === logID);
 
-    // condition checking if the found log length 
+    // condition checking if the found log length
     // is greater than zero dispatch to log details reducer
     if (foundLog.length > 0) {
       dispatch({
@@ -31,8 +31,9 @@ export default function LogDetails() {
         payload: foundLog[0]
       });
     }
-     dispatch({ type: 'FETCH_PRACTICE_LOG' });
-  }, []);
+    // dispatch({ type: 'FETCH_PRACTICE_LOG' });
+    // dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+  }, [dispatch]);
 
   return (
     <div>

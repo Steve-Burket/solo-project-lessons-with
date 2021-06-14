@@ -14,7 +14,9 @@ export default function LogArchive() {
   // Reducer Store
   const practiceLog = useSelector((store) => store.practiceLog);
   const details = useSelector((store) => store.logDetails);
+  const user = useSelector((store) => store.user)
   console.log([practiceLog]);
+  console.log('here are the log details:', details);
 
   // HOOKS
   const history = useHistory();
@@ -22,8 +24,11 @@ export default function LogArchive() {
 
   // Render List of Logs by Name, Instrument, and Date
   useEffect(() => {
-    dispatch({ type: 'FETCH_PRACTICE_LOG' });
-    dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+    if (user.is_instructor === true) {
+      dispatch({ type: 'FETCH_PRACTICE_LOG' });
+    } else {
+      dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+    }
 
     // refreshLog();
   }, []);
