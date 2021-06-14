@@ -83,9 +83,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 // PUT router to allow edit of practice log
-router.put('/:id', (req, res) => {
+router.put('/student/:id', (req, res) => {
   const updatedPracticeLog = req.body;
-  console.log('Here is the log to be updated:', req.body);
+  console.log('Here is the updated log:', req.body);
 
   const queryText = `UPDATE "practice_log"
   SET date_of = $1, practice_length = $2, topic = $3, improved_on = $4, weak_points = $5, questions = $6

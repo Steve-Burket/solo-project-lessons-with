@@ -46,15 +46,15 @@ function* fetchStudentPracticeLogSaga() {
 }
 
 // worker Saga: will be fired on "UPDATE_LOG"
-function* editLog(action) {
+function* editLog(action, payload) {
   try {
     // passes the practice log from the payload to the server
-    yield axios.put(`/practice_log/${action.payload}`, action.payload);
+    const updatedLog = yield axios.put(`/practice_log/student/${action.payload.id}`, payload);
 
-   
-    // yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+    yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG', payload: updatedLog.data
+  });
   } catch (error) {
-    console.log('Error with submitting practice log:', error);
+    console.log('Error with submitting updated practice log:', error);
     yield put({ type: 'REGISTRATION_FAILED' });
   }
 }
@@ -65,7 +65,7 @@ function* deleteLog(action) {
     yield axios.delete(`/practice_log/${action.payload}`);
     yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
   } catch (err) {
-    console.log('Error DELETEing fruit', err);
+    console.log('Error DELETEing log', err);
   }
 }
 
@@ -74,7 +74,7 @@ function* practiceLogSaga() {
   yield takeEvery('FETCH_PRACTICE_LOG', fetchPracticeLogSaga);
   yield takeEvery('FETCH_STUDENT_PRACTICE_LOG', fetchStudentPracticeLogSaga);
   yield takeEvery('DELETE_LOG', deleteLog);
-   yield takeEvery('UPDATE_LOG', editLog);
+  yield takeEvery('UPDATE_LOG', editLog);
 }
 
 export default practiceLogSaga;

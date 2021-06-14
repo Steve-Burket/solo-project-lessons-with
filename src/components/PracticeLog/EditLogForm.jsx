@@ -29,7 +29,7 @@ function EditLogForm() {
   // handle edit of practice log
   // PUT to the DB
   const updatePracticeLog = (event) => {
-    console.log('in submitPracticeLog');
+    console.log('in updatePracticeLog');
     event.preventDefault();
 
     alert('Your Practice Log has been updated');
@@ -42,7 +42,8 @@ function EditLogForm() {
         topic: topic,
         improved_on: improvedOn,
         weak_points: weakPoints,
-        questions: questions
+        questions: questions,
+        practice_log: logDetails.id
       }
     });
 
@@ -63,7 +64,7 @@ function EditLogForm() {
       <h2>What would you like to edit, {user.first_name}?</h2>
       <div className='practice-log'>
         <h3>Practice Log</h3>
-        <form onSubmit={updatePracticeLog} value={user.id}>
+        <form onSubmit={updatePracticeLog} value={logDetails.id}>
           <label htmlFor='date'>
             Date:
             <input
