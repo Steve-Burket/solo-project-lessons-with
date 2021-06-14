@@ -4,30 +4,33 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const teachers = useSelector((store) => store.teachers);
-  // const instruments = useSelector((store) => store.instruments);
+  const instruments = useSelector((store) => store.instruments);
   const dispatch = useDispatch();
+
+  console.log('here is a list of instruments', instruments);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_TEACHERS' });
+    dispatch({ type: 'FETCH_INSTRUMENTS' });
   }, []);
 
   // hard coded instruments for now
   // will bring in DB later
-  const instruments = [
-    'Guitar',
-    'Mandolin',
-    'Bass',
-    'Ukulele',
-    'Vocals',
-    'Piano',
-    'Drums'
-  ];
+  // const instruments = [
+  //   'Guitar',
+  //   'Mandolin',
+  //   'Bass',
+  //   'Ukulele',
+  //   'Vocals',
+  //   'Piano',
+  //   'Drums'
+  // ];
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [instrument, setInstrument] = useState('Select');
+  const [instrument, setInstrument] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
@@ -133,13 +136,14 @@ function RegisterForm() {
               required
               onChange={(event) => setInstrument(event.target.value)}
             >
-              <option disabled hidden>
+              <option hidden>
                 Select
               </option>
+
               {instruments.map((inst, i) => {
                 return (
                   <option key={i} value={inst}>
-                    {inst}
+                    {inst.instrument}
                   </option>
                 );
               })}
@@ -171,6 +175,7 @@ function RegisterForm() {
           />
         </label>
       </div>
+      {/* move to separate component eventually */}
       <div>
         {viewInstructorList && (
           <label htmlFor='instructor_is'>
@@ -182,11 +187,9 @@ function RegisterForm() {
               required
               onChange={(event) => setInstructorIs(event.target.value)}
             >
-              <option>
-                {' '}
-                {/*Select placeholder attributes not working here for some reason hidden selected disabled**/}
-                Select
-              </option>
+              {/*Select placeholder attributes not working here for some reason => hidden selected disabled**/}
+
+              <option hidden>Select</option>
               {teachers.map((teach) => {
                 console.log(teach.first_name, teach.last_name);
                 return (
@@ -199,6 +202,7 @@ function RegisterForm() {
           </label>
         )}
       </div>
+      {/* move to separate component eventually */}
 
       <div>
         <label htmlFor='is_instructor'>

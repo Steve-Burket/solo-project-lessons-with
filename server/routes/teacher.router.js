@@ -4,13 +4,13 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // Route to get teachers. only for student registration
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   const queryTeachers = `SELECT * FROM "user"
 WHERE "is_instructor" = true;`;
   pool
     .query(queryTeachers)
     .then((result) => {
-      console.log('here are the teachers: ', result);
+      console.log('here are the teachers: ', result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
