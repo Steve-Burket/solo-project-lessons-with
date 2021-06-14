@@ -10,6 +10,7 @@ function EditLogForm() {
   const user = useSelector((store) => store.user);
   const logDetails = useSelector((store) => store.logDetails);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // LOCAL STATE
   const [date, setDate] = useState(logDetails.date_of);
@@ -19,11 +20,19 @@ function EditLogForm() {
   const [weakPoints, setWeakPoints] = useState(logDetails.weak_points);
   const [questions, setQuestions] = useState(logDetails.questions);
 
+  console.log(
+    'Here is the practice length',
+    logDetails.practice_length,
+    duration
+  );
+
   // handle edit of practice log
   // PUT to the DB
   const updatePracticeLog = (event) => {
     console.log('in submitPracticeLog');
     event.preventDefault();
+
+    alert('Your Practice Log has been updated');
 
     dispatch({
       type: 'UPDATE_LOG',
@@ -44,6 +53,9 @@ function EditLogForm() {
     setImprovedOn('');
     setWeakPoints('');
     setQuestions('');
+
+    // bring back to archive view
+    history.push(`/log_archive`);
   }; // end handle submit
 
   return (

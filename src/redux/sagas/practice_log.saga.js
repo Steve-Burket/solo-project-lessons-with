@@ -45,14 +45,14 @@ function* fetchStudentPracticeLogSaga() {
   }
 }
 
-// worker Saga: will be fired on "SUBMIT_PRACTICE_LOG" actions
+// worker Saga: will be fired on "UPDATE_LOG"
 function* editLog(action) {
   try {
     // passes the practice log from the payload to the server
-    yield axios.put(`/practice_log/${action.payload}`);
+    yield axios.put(`/practice_log/${action.payload}`, action.payload);
 
-    // store practice log in redux
-    yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+   
+    // yield put({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
   } catch (error) {
     console.log('Error with submitting practice log:', error);
     yield put({ type: 'REGISTRATION_FAILED' });
