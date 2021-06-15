@@ -17,6 +17,9 @@ function* loginUser(action) {
     // allow the server session to recognize the user
     yield axios.post('/api/user/login', action.payload, config);
 
+    console.log('Here is the login:', action.payload, config);
+    
+
     // after the user has logged in
     // get the user information from the server
     yield put({ type: 'FETCH_USER' });

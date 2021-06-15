@@ -21,19 +21,19 @@ function StudentRoster(props) {
   // const instruments = ['Guitar'];
 
   // View student's list of practice log
-  const viewStudentDetails = (studentId) => {
+  const viewStudentDetails = (studentID) => {
     // we want to target the student clicked on
     // by ID and render the logs that belong to them
     // dispatch({
     //   type: 'FETCH_PRACTICE_LOG',
     //    payload: studentId
     // });
-    history.push(`/student/details/${studentId}`);
+    history.push(`/student/details/${studentID}`);
   };
 
   return (
     <div>
-      <h2>'Student Roster'</h2>
+      <h2>Student Roster</h2>
       <table>
         <thead>
           <tr>

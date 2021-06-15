@@ -15,9 +15,8 @@ function UserPage() {
       <p>Your primary instrument is: {user.instrument}</p>
 
       {user.is_instructor === true && <StudentRoster />}
-
       {user.is_instructor === false && <PracticeLog />}
-      
+
       <LogOutButton className='btn' />
     </div>
   );

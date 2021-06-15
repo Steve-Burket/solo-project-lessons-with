@@ -6,8 +6,8 @@ function* fetchUser() {
   try {
     const config = {
       headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    }; 
+      withCredentials: true
+    };
 
     // the config includes credentials which
     // allow the server session to recognize the user
@@ -18,9 +18,8 @@ function* fetchUser() {
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
-    yield put({ type: 'SET_USER', payload: response.data, config});
+    yield put({ type: 'SET_USER', payload: response.data, config });
     console.log('here is the user:', response.data);
-    
   } catch (error) {
     console.log('User get request failed', error);
   }
@@ -28,7 +27,6 @@ function* fetchUser() {
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  // yield takeEvery('FETCH_TEACHERS', fetchTeachers);
 }
 
 export default userSaga;

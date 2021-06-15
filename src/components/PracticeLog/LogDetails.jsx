@@ -47,6 +47,7 @@ export default function LogDetails() {
     }
   };
 
+
   // Conditionally render VIEW Practice Log Form
   const displayPracticeLogForm = (e) => {
     console.log('in displayPracticeLogForm');
@@ -64,43 +65,46 @@ export default function LogDetails() {
     return <h1>loading...</h1>;
   }
   return (
-    <div>
-      {/* <LogArchive /> */}
-      <h1>{foundLog.first_name}'s Practice Log</h1>
-      <section className='practice-log-container'>
-        <div key={foundLog.id}>
-          <ul value={foundLog.date_of}>
-            <li>
-              Date: {moment(foundLog.date_of).format('MMMM Do YYYY')}
-              <br />
-              <br />
-              Duration: {foundLog.practice_length}
-              <br />
-              <br />
-              Topic: {foundLog.topic}
-              <br />
-              <br />
-              Improved on: {foundLog.improved_on}
-              <br />
-              <br />
-              Needs work: {foundLog.weak_points}
-              <br />
-              <br />
-              Questions: {foundLog.questions}
-              <br />
-              <br />
-            </li>
-          </ul>
-        </div>
+    <>
+      <div>
+        {/* <LogArchive /> */}
+        <h1>{foundLog.first_name}'s Practice Log</h1>
+        <button onClick={() => history.goBack()}>Go Back</button>
+        <section className='practice-log-container'>
+          <div key={foundLog.id}>
+            <ul value={foundLog.date_of}>
+              <li>
+                Date: {moment(foundLog.date_of).format('MMMM Do YYYY')}
+                <br />
+                <br />
+                Duration: {foundLog.practice_length}
+                <br />
+                <br />
+                Topic: {foundLog.topic}
+                <br />
+                <br />
+                Improved on: {foundLog.improved_on}
+                <br />
+                <br />
+                Needs work: {foundLog.weak_points}
+                <br />
+                <br />
+                Questions: {foundLog.questions}
+                <br />
+                <br />
+              </li>
+            </ul>
+          </div>
 
-        {user.is_instructor === false && (
-          <button onClick={displayDeleteButton}>Edit Log</button>
-        )}
-        {viewDeleteButton && user.is_instructor === false && (
-          <button onClick={deleteLog}>Delete Log</button>
-        )}
-      </section>
-      {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
-    </div>
+          {user.is_instructor === false && (
+            <button onClick={displayDeleteButton}>Edit Log</button>
+          )}
+          {viewDeleteButton && user.is_instructor === false && (
+            <button onClick={deleteLog}>Delete Log</button>
+          )}
+        </section>
+        {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
+      </div>
+    </>
   );
 }

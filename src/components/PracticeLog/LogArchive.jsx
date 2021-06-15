@@ -18,7 +18,7 @@ export default function LogArchive() {
   // const params = useParams();
 
   // Fetch practice log that is clicked on
-  const fetchPracticeLog = (log) => {
+  const fetchPracticeLogs = (log) => {
     // dispatch({
     //   type: 'FETCH_PRACTICE_LOG_DETAILS',
     //   payload: log
@@ -51,7 +51,7 @@ export default function LogArchive() {
                   <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
 
                   <td>
-                    <button onClick={() => fetchPracticeLog(log)}>View</button>
+                    <button onClick={() => fetchPracticeLogs(log)}>View</button>
                   </td>
                 </tr>
               );

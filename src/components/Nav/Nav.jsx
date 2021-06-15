@@ -6,14 +6,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function Nav() {
   const user = useSelector((store) => store.user);
-  const teacher = useSelector((store) => store.teachers);
+  const teacher = useSelector((store) => store.myTeacher);
 
   const dispatch = useDispatch();
 
   // useEffect to render teacher list
-  useEffect(() => {
-    dispatch({ type: 'FETCH_TEACHERS' });
-  }, []);
+  // useEffect(() => {
+  // }, []);
 
   console.log(teacher);
   console.log(user.instructor_is);
@@ -31,7 +30,7 @@ function Nav() {
   return (
     <div className='nav'>
       <Link to='/home'>
-        <h2 className='nav-title'>LESSONS WITH {user.instructor_is}</h2>
+        <h2 className='nav-title'>LESSONS WITH {user.first_name}</h2>
         {/* <-- Needs to be teacher's first name instead of ID*/}
       </Link>
       <div>

@@ -11,8 +11,22 @@ function* fetchStudents() {
     console.log('Students get request failed', error);
   }
 }
+
+function* fetchMyTeacher() {
+  try {
+    const myTeacher= yield axios.get('/student/myinstructor');
+
+    yield put({ type: 'SET_MY_TEACHER', payload: myTeacher.data });
+    console.log('Here is a list of the my teachers', myTeacher.data);
+  } catch (error) {
+    console.log('Teachers get request failed', error);
+  }
+}
+
+
 function* studentSaga() {
   yield takeEvery('FETCH_STUDENTS', fetchStudents);
+  // yield teakeEvery('FETCH_MY_TEACHER', fetchMyTeacher);
 }
 
 export default studentSaga;

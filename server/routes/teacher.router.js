@@ -10,7 +10,7 @@ WHERE "is_instructor" = true;`;
   pool
     .query(queryTeachers)
     .then((result) => {
-      console.log('here are the teachers: ', result.rows);
+      // console.log('here are the teachers: ', result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -28,7 +28,7 @@ WHERE "user"."instructor_is" = $1;`;
   pool
     .query(queryTeachers, [req.user.id])
     .then((result) => {
-      console.log('here are the students: ', result);
+      console.log('here are the students: ', result.rows);
       res.send(result.rows);
     })
     .catch((err) => {

@@ -24,4 +24,20 @@ WHERE "user"."instructor_is" = $1;`;
     });
 });
 
+// This is to GET  the teacher's student roster
+router.get('/myinstructor', rejectUnauthenticated, (req, res) => {
+  console.log('here is the req.user.id: ', req.user.id);
+
+  const queryStudents = `SELECT * FROM "user" WHERE "user"."id" = $1;`;
+  pool
+    .query(queryStudents, [req.user.instructor_is])
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log('Error in getting students', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

@@ -137,7 +137,7 @@ function EditLogForm(props) {
           </label>
           <br />
           <input className='btn' type='submit' name='submit' value='Save' />
-          <input className='btn' type='cancel' name='cancel' defaultValue='Cancel' onClick={() => history.push('/log/details/:logID')}/>
+          <input className='btn' type='cancel' name='cancel' defaultValue='Cancel' onClick={() => history.push(`/log/details/${logDetails.id}`)}/>
         </form>
       </div>
     </>

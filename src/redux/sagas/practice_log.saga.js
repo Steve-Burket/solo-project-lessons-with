@@ -30,12 +30,12 @@ function* fetchPracticeLogSaga() {
   }
 }
 
-// this saga is to handle the student's view of their logs
+// this saga is to handle the student's view of their logs // BGB
 function* fetchStudentPracticeLogSaga() {
-  console.log('in fetchPracticeLogSaga');
-
   try {
     const studentPracticeLog = yield axios.get('/practice_log/student');
+    console.log('in fetchPracticeLogSaga', studentPracticeLog);
+
     yield put({
       type: 'SET_STUDENT_PRACTICE_LOG',
       payload: studentPracticeLog.data
@@ -47,13 +47,12 @@ function* fetchStudentPracticeLogSaga() {
 
 // worker Saga: will be fired on "UPDATE_LOG"
 function* editLog(action) {
-
   try {
-    console.log('Here is the update data:', action.payload);
-    
+    console.log('Here is the updated data:', action.payload);
+
     // passes the practice log from the payload to the server
-    const updatedLog = yield axios.put(`/practice_log/student`, action.payload);
-    
+    const updatedLog = yield axios.put(`/practice_log`, action.payload);
+
     yield put({
       type: 'FETCH_STUDENT_PRACTICE_LOG',
       payload: updatedLog.data

@@ -30,7 +30,7 @@ WHERE "user"."instructor_is" = $1;`;
 /**
  * GET route for student's view of practice log
  */
-router.get(`/student`, (req, res) => {
+router.get(`/student`, rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryPracticeLog = `SELECT * FROM "user"
 JOIN "practice_log" ON "practice_log"."user_id" = "user"."id"
@@ -83,7 +83,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 // PUT router to allow edit of practice log
-router.put('/student', (req, res) => {
+router.put('/', (req, res) => {
   const updatedPracticeLog = req.body;
   console.log('Here is the updated log:', req.body);
   

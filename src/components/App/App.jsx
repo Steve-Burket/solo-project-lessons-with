@@ -31,15 +31,21 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
+  // load the user only once (first mount)
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+  }, [dispatch]);
+
+  // load our app data every time the user changes (so after login)
+  useEffect(() => {
     dispatch({ type: 'FETCH_STUDENTS' });
     if (user.is_instructor === true) {
       dispatch({ type: 'FETCH_PRACTICE_LOG' });
     } else {
       dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+      dispatch({ type: 'FETCH_MY_TEACHER' });
     }
-  }, [dispatch]);
+  }, [user]);
 
   return (
     <Router>
@@ -115,17 +121,17 @@ function App() {
           </ProtectedRoute>
 
           {/* Here is the StudentRoster component */}
-          {user.is_instructor === true && user.id && (
+          {user.id && (
             <ProtectedRoute exact path={'/student'}>
               <StudentRoster />
             </ProtectedRoute>
           )}
 
-          {/* {user.id && (
-            <ProtectedRoute path={'/'}>
+          {user.is_instructor === false && user.id && (
+            <ProtectedRoute eaxact path={'/practice_log'}>
               <PracticeLog />
             </ProtectedRoute>
-          )} */}
+          )}
 
           {/* Here is the StudentRoster component */}
           {user.is_instructor === true && user.id && (
@@ -138,10 +144,6 @@ function App() {
           <ProtectedRoute path={`/log/details/:logID`}>
             <LogDetails />
           </ProtectedRoute>
-
-          {/* <Route path={`/details/:id`}>
-            <LogDetails />
-          </Route> */}
 
           {/* Here is the Log Archives component */}
           <ProtectedRoute exact path='/log/archive'>

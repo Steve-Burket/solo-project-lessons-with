@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import PracticeLog from '../PracticeLog/PracticeLog';
+import moment from 'moment';
 
 import './StudentRoster.css';
 
@@ -14,6 +14,8 @@ function StudentRoster(props) {
   const students = useSelector((store) => store.students);
   const practiceLog = useSelector((store) => store.practiceLog);
   const details = useSelector((store) => store.logDetails);
+
+  console.log('here are the logs from the store:', practiceLog);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,6 +36,12 @@ function StudentRoster(props) {
     (log) => log.user_id === Number(foundStudent.id)
   );
 
+  // view practice logs that belong to that student
+  // push to route /log/details/:logID
+  const viewPracticeLogs = (theLog) => {
+    history.push(`/log/details/${theLog.id}`);
+  };
+
   console.log('here are the found logs:', foundLogs);
   return (
     <>
@@ -50,7 +58,7 @@ function StudentRoster(props) {
             </tr>
           </thead>
           <tbody>
-            {/* {practiceLog.map((log) => {
+            {foundLogs.map((log) => {
               console.log(`This is ${log.first_name}'s log`);
               return (
                 <tr key={log.id} value={log.id}>
@@ -65,7 +73,7 @@ function StudentRoster(props) {
                   </td>
                 </tr>
               );
-            })} */}
+            })}
           </tbody>
         </table>
       </div>
