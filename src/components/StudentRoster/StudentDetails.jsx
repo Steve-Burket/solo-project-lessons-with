@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 
+import Table from 'react-bootstrap/Table'
+
 import './StudentRoster.css';
 
 // Basic functional component structure for React with default state
@@ -48,7 +50,7 @@ function StudentRoster(props) {
       <h1>Student Details: {foundStudent.id}</h1>
       {foundLogs.length} practice logs found:
       <div>
-        <table>
+        <Table striped bordered hover variant='dark' size='small'>
           <thead>
             <tr>
               <th>Student</th>
@@ -75,7 +77,7 @@ function StudentRoster(props) {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );

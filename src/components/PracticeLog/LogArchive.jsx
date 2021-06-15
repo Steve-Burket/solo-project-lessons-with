@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import LogDetails from './LogDetails';
 
-// table from react bootstrap
+// react bootstrap!
 import Table from 'react-bootstrap/Table';
 
 export default function LogArchive() {

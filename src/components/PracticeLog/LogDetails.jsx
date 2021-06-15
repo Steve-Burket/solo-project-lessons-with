@@ -5,6 +5,10 @@ import LogArchive from './LogArchive';
 import EditLogForm from './EditLogForm';
 import moment from 'moment';
 
+// react bootstrap!
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Card from 'react-bootstrap/Card';
+
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
   // const logDetails = useSelector((store) => store.logDetails);
@@ -47,7 +51,6 @@ export default function LogDetails() {
     }
   };
 
-
   // Conditionally render VIEW Practice Log Form
   const displayPracticeLogForm = (e) => {
     console.log('in displayPracticeLogForm');
@@ -70,7 +73,7 @@ export default function LogDetails() {
         {/* <LogArchive /> */}
         <h1>{foundLog.first_name}'s Practice Log</h1>
         <button onClick={() => history.goBack()}>Go Back</button>
-        <section className='practice-log-container'>
+        <Card body className='practice-log-container'>
           <div key={foundLog.id}>
             <ul value={foundLog.date_of}>
               <li>
@@ -95,14 +98,14 @@ export default function LogDetails() {
               </li>
             </ul>
           </div>
-
           {user.is_instructor === false && (
             <button onClick={displayDeleteButton}>Edit Log</button>
           )}
           {viewDeleteButton && user.is_instructor === false && (
             <button onClick={deleteLog}>Delete Log</button>
           )}
-        </section>
+        </Card>
+
         {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
       </div>
     </>
