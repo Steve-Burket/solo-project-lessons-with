@@ -15,7 +15,8 @@ function* fetchStudents() {
 function* fetchMyTeacher() {
   try {
     const myTeacher= yield axios.get('/student/myinstructor');
-
+    console.log('here is the teacher data', myTeacher);
+    
     yield put({ type: 'SET_MY_TEACHER', payload: myTeacher.data });
     console.log('Here is a list of the my teachers', myTeacher.data);
   } catch (error) {
@@ -26,7 +27,7 @@ function* fetchMyTeacher() {
 
 function* studentSaga() {
   yield takeEvery('FETCH_STUDENTS', fetchStudents);
-  // yield teakeEvery('FETCH_MY_TEACHER', fetchMyTeacher);
+  yield takeEvery('FETCH_MY_TEACHER', fetchMyTeacher);
 }
 
 export default studentSaga;

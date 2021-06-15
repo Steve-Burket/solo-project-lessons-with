@@ -8,6 +8,8 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
+  console.log('here is the students instrument:', user.instrument);
+
   return (
     <div className='container'>
       <h2>Hello, {user.first_name}!</h2>

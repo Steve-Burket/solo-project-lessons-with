@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import LogDetails from './LogDetails';
 
+// table from react bootstrap
+import Table from 'react-bootstrap/Table';
+
 export default function LogArchive() {
   // Reducer Store
   const practiceLog = useSelector((store) => store.practiceLog);
@@ -30,7 +33,7 @@ export default function LogArchive() {
     <>
       <h1>Select To View Log</h1>
       <div>
-        <table>
+        <Table striped bordered hover variant='dark' size='small'>
           <thead>
             <tr>
               <th>Student</th>
@@ -57,7 +60,7 @@ export default function LogArchive() {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );

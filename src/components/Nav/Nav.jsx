@@ -11,10 +11,12 @@ function Nav() {
   const dispatch = useDispatch();
 
   // useEffect to render teacher list
-  // useEffect(() => {
-  // }, []);
+  useEffect(() => {
+      dispatch({ type: 'FETCH_MY_TEACHER' });
 
-  console.log(teacher);
+  }, []);
+
+  console.log(teacher.first_name);
   console.log(user.instructor_is);
 
   let loginLinkData = {
@@ -30,7 +32,7 @@ function Nav() {
   return (
     <div className='nav'>
       <Link to='/home'>
-        <h2 className='nav-title'>LESSONS WITH {user.first_name}</h2>
+        <h2 className='nav-title'>LESSONS WITH {teacher.first_name}</h2>
         {/* <-- Needs to be teacher's first name instead of ID*/}
       </Link>
       <div>

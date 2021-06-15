@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import './StudentRoster.css';
 
+// table from react bootstrap
+import Table from 'react-bootstrap/Table';
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
@@ -34,7 +37,7 @@ function StudentRoster(props) {
   return (
     <div>
       <h2>Student Roster</h2>
-      <table>
+      <Table striped bordered hover variant='dark' size='small'>
         <thead>
           <tr>
             <th>Name</th>
@@ -59,7 +62,7 @@ function StudentRoster(props) {
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
