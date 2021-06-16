@@ -1,4 +1,4 @@
-const instrumentReducer = (state = [], action) => {
+const instrumentReducer = (state = [''], action) => {
   switch (action.type) {
     case 'SET_INSTRUMENT':
       return action.payload;

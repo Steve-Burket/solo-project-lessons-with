@@ -36,6 +36,7 @@ function App() {
   // load the user only once (first mount)
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_INSTRUMENTS' });
   }, [dispatch]);
 
   // load our app data every time the user changes (so after login)
@@ -126,27 +127,27 @@ function App() {
           </ProtectedRoute>
 
           {/* Here is the StudentRoster component */}
-          {user.id && (
+          {user.is_instructor === true && user.id && (
             <ProtectedRoute exact path={'/student'}>
               <StudentRoster />
             </ProtectedRoute>
           )}
 
           {user.is_instructor === false && user.id && (
-            <ProtectedRoute eaxact path={'/practice_log'}>
+            <ProtectedRoute exact path={'/practice_log'}>
               <PracticeLog />
             </ProtectedRoute>
           )}
 
           {/* Here is the StudentRoster component */}
           {user.is_instructor === true && user.id && (
-            <ProtectedRoute path={'/student/details/:studentID'}>
+            <ProtectedRoute exact path={'/student/details/:studentID'}>
               <StudentDetails />
             </ProtectedRoute>
           )}
 
           {/* Here is the Log Details component */}
-          <ProtectedRoute path={`/log/details/:logID`}>
+          <ProtectedRoute exact path={`/log/details/:logID`}>
             <LogDetails />
           </ProtectedRoute>
 

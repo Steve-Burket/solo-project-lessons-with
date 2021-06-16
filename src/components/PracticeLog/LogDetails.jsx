@@ -75,7 +75,7 @@ export default function LogDetails() {
       <div>
         {/* <LogArchive /> */}
         <h1>{foundLog.first_name}'s Practice Log</h1>
-        <button onClick={() => history.goBack()}>Go Back</button>
+        <Button onClick={() => history.goBack()}>Go Back</Button>
         <Card body className='practice-log-container'>
           <div key={foundLog.id}>
             <ul value={foundLog.date_of}>
