@@ -6,12 +6,15 @@ import './PracticeLog.css';
 // react bootstrap!
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function PracticeLog() {
   const user = useSelector((store) => store.user);
+  const myTeacher = useSelector((store) => store.myTeacher);
   const dispatch = useDispatch();
 
   // LOCAL STATE
@@ -53,11 +56,26 @@ function PracticeLog() {
     <>
       <Card body className='practice-log-container'>
         <h2>What did you practice today, {user.first_name}?</h2>
-        <hr/>
-        <div >
+        <hr />
+        <div>
           <h3>Practice Log</h3>
-          <form className='practice-log-form' onSubmit={submitPracticeLog} value={user.id}>
-            <label htmlFor='date'>
+          <Form
+            className='practice-log-form'
+            onSubmit={submitPracticeLog}
+            value={user.id}
+          >
+            <Form.Group controlId='input-date'>
+              <Form.Label>Date:</Form.Label>
+              <Form.Control
+                placeholder='DD/MM/YYYY'
+                type='text'
+                name='date'
+                value={date}
+                onChange={(event) => setDate(event.target.value)}
+              />
+            </Form.Group>
+
+            {/* <label htmlFor='date'>
               Date:
               <input
                 placeholder='DD/MM/YYYY'
@@ -66,68 +84,82 @@ function PracticeLog() {
                 value={date}
                 onChange={(event) => setDate(event.target.value)}
               />
-            </label>
+            </label> */}
+
             <br />
-            <label htmlFor='duration'>
-              Duration:
-              <input
-                placeholder='Duration'
-                type='text'
-                name='duration'
-                value={duration}
-                onChange={(event) => setDuration(event.target.value)}
-              />
-              minutes
-            </label>
+
+            <Form.Group controlId='input-duration'>
+              <Form.Label>
+                Duration:
+                <Form.Control
+                  placeholder='Duration'
+                  type='text'
+                  name='duration'
+                  value={duration}
+                  onChange={(event) => setDuration(event.target.value)}
+                />
+                minutes
+              </Form.Label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='topic'>
-              What did you practice:
-              <br />
-              <input
-                placeholder='Practiced'
+
+            <Form.Group controlId='input'>
+              <Form.Label>What did you practice:</Form.Label>
+              <Form.Control
+                placeholder='Today, I practiced...'
                 type='text'
                 name='topic'
                 value={topic}
                 onChange={(event) => setTopic(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='improved_on'>
-              What went well:
-              <br />
-              <input
-                placeholder='What has gotten easier'
+
+            <Form.Group controlId='input'>
+              <Form.Label>What went well:</Form.Label>
+              <Form.Control
+                placeholder='What has gotten easier?'
                 type='text'
                 name='improved_on'
                 value={improvedOn}
                 onChange={(event) => setImprovedOn(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='weak_points'>
-              What you would like to improve on:
-              <input
-                placeholder='Needs practice?'
+
+            <Form.Group controlId='input'>
+              <Form.Label>What you would like to improve on:</Form.Label>
+              <Form.Control
+                placeholder='I need to practice...'
                 type='text'
                 name='weak_points'
                 value={weakPoints}
                 onChange={(event) => setWeakPoints(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='questions'>
-              Questions for your teacher:
-              <input
+
+            <Form.Group controlId='text-area'>
+              <Form.Label> Questions for {myTeacher.first_name}:</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows={3}
                 placeholder='Ask anything'
                 type='text'
                 name='questions'
                 value={questions}
                 onChange={(event) => setQuestions(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
+
             <input className='btn' type='submit' name='submit' value='Save' />
-          </form>
+          </Form>
         </div>
       </Card>
     </>

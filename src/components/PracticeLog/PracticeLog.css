@@ -9,12 +9,25 @@
   margin: 20px 1px;
   padding: 20px;
   border: 1px solid black;
-  width: 30%;
-  /* list-style: none; */
+  width: 100%;
 }
 
-.practice-log-container {
-  margin: 20px;
-  text-align: center;
-  display: inline-block;
+#input {
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid darkblue;
+}
+
+#input-date {
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid darkblue;
+  width: 20%;
+}
+
+#input-duration {
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid darkblue;
+  width: 45%;
 }

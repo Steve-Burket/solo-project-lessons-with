@@ -327,7 +327,7 @@ function RegisterForm() {
       </div> */}
       {/* move to separate component eventually */}
 
-      <ToggleButtonGroup
+      {/* <ToggleButtonGroup
         defaultValue={false}
         type='radio'
         name='radio'
@@ -339,7 +339,7 @@ function RegisterForm() {
           Student
         </ToggleButton>
         <ToggleButton value={true}>Teacher</ToggleButton>
-      </ToggleButtonGroup>
+      </ToggleButtonGroup> */}
 
       {/* <Form.Group controlId='formStudentSelect'>
         <Form.Control
@@ -392,7 +392,7 @@ function RegisterForm() {
       // ))} */}
       {/* </ButtonGroup> */}
 
-      {/* <div>
+      <div>
         <label htmlFor='is_instructor'>
           <input
             onClick={displayInstructorField}
@@ -405,7 +405,7 @@ function RegisterForm() {
           />
           Student
         </label>
-      </div> */}
+      </div>
 
       {/* <Form.Group controlId='formTeacher'>
         <Form.Label>First:</Form.Label>
@@ -418,7 +418,7 @@ function RegisterForm() {
         />
       </Form.Group> */}
 
-      {/* <div>
+      <div>
         <label htmlFor='is_instructor'>
           <input
             type='radio'
@@ -430,20 +430,7 @@ function RegisterForm() {
           />
           Teacher
         </label>
-      </div> */}
-
-      <>
-        {/* <ToggleButtonGroup
-          type='checkbox'
-          defaultValue={[1, 3]}
-          className='mb-2'
-        >
-          <ToggleButton value={1}>foo</ToggleButton>
-          <ToggleButton value={2}>bar</ToggleButton>
-          <ToggleButton value={3}>baz</ToggleButton>
-        </ToggleButtonGroup>
-        <br /> */}
-      </>
+      </div>
 
       <div>
         <input className='btn' type='submit' name='submit' value='Register' />
