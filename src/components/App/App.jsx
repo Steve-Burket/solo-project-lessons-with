@@ -8,7 +8,6 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -46,9 +45,9 @@ function App() {
       dispatch({ type: 'FETCH_PRACTICE_LOG' });
     } else {
       dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+      dispatch({ type: 'FETCH_MY_TEACHER' });
     }
   }, [user]);
-
   return (
     <Router>
       <div

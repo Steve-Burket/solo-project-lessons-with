@@ -35,7 +35,7 @@
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  border: none;
+  /* border: none; */
   cursor: pointer;
   outline: 0;
 }

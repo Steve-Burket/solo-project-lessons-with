@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './PracticeLog.css';
 
+// react bootstrap!
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Card from 'react-bootstrap/Card';
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
@@ -47,82 +51,85 @@ function PracticeLog() {
 
   return (
     <>
-      <h2>What did you practice today, {user.first_name}?</h2>
-      <div className='practice-log'>
-        <h3>Practice Log</h3>
-        <form onSubmit={submitPracticeLog} value={user.id}>
-          <label htmlFor='date'>
-            Date:
-            <input
-              placeholder='DD/MM/YYYY'
-              type='text'
-              name='date'
-              value={date}
-              onChange={(event) => setDate(event.target.value)}
-            />
-          </label>
-          <br />
-          <label htmlFor='duration'>
-            Duration:
-            <input
-              placeholder='Duration'
-              type='text'
-              name='duration'
-              value={duration}
-              onChange={(event) => setDuration(event.target.value)}
-            />
-            minutes
-          </label>
-          <br />
-          <label htmlFor='topic'>
-            What did you practice:
+      <Card body className='practice-log-container'>
+        <h2>What did you practice today, {user.first_name}?</h2>
+        <hr/>
+        <div >
+          <h3>Practice Log</h3>
+          <form className='practice-log-form' onSubmit={submitPracticeLog} value={user.id}>
+            <label htmlFor='date'>
+              Date:
+              <input
+                placeholder='DD/MM/YYYY'
+                type='text'
+                name='date'
+                value={date}
+                onChange={(event) => setDate(event.target.value)}
+              />
+            </label>
             <br />
-            <input
-              placeholder='Practiced'
-              type='text'
-              name='topic'
-              value={topic}
-              onChange={(event) => setTopic(event.target.value)}
-            />
-          </label>
-          <br />
-          <label htmlFor='improved_on'>
-            What went well:
+            <label htmlFor='duration'>
+              Duration:
+              <input
+                placeholder='Duration'
+                type='text'
+                name='duration'
+                value={duration}
+                onChange={(event) => setDuration(event.target.value)}
+              />
+              minutes
+            </label>
             <br />
-            <input
-              placeholder='What has gotten easier'
-              type='text'
-              name='improved_on'
-              value={improvedOn}
-              onChange={(event) => setImprovedOn(event.target.value)}
-            />
-          </label>
-          <br />
-          <label htmlFor='weak_points'>
-            What you would like to improve on:
-            <input
-              placeholder='Needs practice?'
-              type='text'
-              name='weak_points'
-              value={weakPoints}
-              onChange={(event) => setWeakPoints(event.target.value)}
-            />
-          </label>
-          <br />
-          <label htmlFor='questions'>
-            Questions for your teacher:
-            <input
-              placeholder='Ask anything'
-              type='text'
-              name='questions'
-              value={questions}
-              onChange={(event) => setQuestions(event.target.value)}
-            />
-          </label>
-          <br />
-          <input className='btn' type='submit' name='submit' value='Save' />
-        </form>
-      </div>
+            <label htmlFor='topic'>
+              What did you practice:
+              <br />
+              <input
+                placeholder='Practiced'
+                type='text'
+                name='topic'
+                value={topic}
+                onChange={(event) => setTopic(event.target.value)}
+              />
+            </label>
+            <br />
+            <label htmlFor='improved_on'>
+              What went well:
+              <br />
+              <input
+                placeholder='What has gotten easier'
+                type='text'
+                name='improved_on'
+                value={improvedOn}
+                onChange={(event) => setImprovedOn(event.target.value)}
+              />
+            </label>
+            <br />
+            <label htmlFor='weak_points'>
+              What you would like to improve on:
+              <input
+                placeholder='Needs practice?'
+                type='text'
+                name='weak_points'
+                value={weakPoints}
+                onChange={(event) => setWeakPoints(event.target.value)}
+              />
+            </label>
+            <br />
+            <label htmlFor='questions'>
+              Questions for your teacher:
+              <input
+                placeholder='Ask anything'
+                type='text'
+                name='questions'
+                value={questions}
+                onChange={(event) => setQuestions(event.target.value)}
+              />
+            </label>
+            <br />
+            <input className='btn' type='submit' name='submit' value='Save' />
+          </form>
+        </div>
+      </Card>
     </>
   );
 }
