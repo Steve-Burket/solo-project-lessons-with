@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import moment from 'moment';
 import LogDetails from './LogDetails';
 
+import './LogArchive.css';
+
 // react bootstrap!
 import Table from 'react-bootstrap/Table';
 
@@ -33,7 +35,7 @@ export default function LogArchive() {
     <>
       <h1>Select To View Log</h1>
       <div>
-        <Table striped bordered hover variant='dark' size='small'>
+        <Table striped bordered hover variant='dark' size='sm'>
           <thead>
             <tr>
               <th>Student</th>

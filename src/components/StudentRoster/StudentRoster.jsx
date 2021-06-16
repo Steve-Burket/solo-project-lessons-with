@@ -37,7 +37,7 @@ function StudentRoster(props) {
   return (
     <div>
       <h2>Student Roster</h2>
-      <Table striped bordered hover variant='dark' size='small'>
+      <Table striped bordered hover variant='dark' size='sm'>
         <thead>
           <tr>
             <th>Name</th>

@@ -4,19 +4,22 @@ import { useEffect, useState } from 'react';
 import LogArchive from './LogArchive';
 import EditLogForm from './EditLogForm';
 import moment from 'moment';
+import './LogDetails.css';
 
 // react bootstrap!
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Card from 'react-bootstrap/Card';
+import Collapse from 'react-bootstrap/Collapse';
+import Button from 'react-bootstrap/Button';
 
 export default function LogDetails() {
   const practiceLog = useSelector((store) => store.practiceLog);
-  // const logDetails = useSelector((store) => store.logDetails);
   const user = useSelector((store) => store.user);
 
   // Local State
   const [viewPracticeLogForm, setViewPracticeLogForm] = useState(false);
   const [viewDeleteButton, setViewDeleteButton] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // Hooks
   const history = useHistory();
@@ -99,14 +102,19 @@ export default function LogDetails() {
             </ul>
           </div>
           {user.is_instructor === false && (
-            <button onClick={displayDeleteButton}>Edit Log</button>
+            <Button
+              onClick={(() => setOpen(!open), displayDeleteButton)}
+              aria-controls='show-edit-form'
+              aria-expanded={open}
+            >
+              Edit Log
+            </Button>
           )}
           {viewDeleteButton && user.is_instructor === false && (
-            <button onClick={deleteLog}>Delete Log</button>
+            <Button onClick={deleteLog}>Delete Log</Button>
           )}
         </Card>
-
-        {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
+          {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
       </div>
     </>
   );
