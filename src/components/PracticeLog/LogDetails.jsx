@@ -74,30 +74,50 @@ export default function LogDetails() {
     <>
       <div>
         {/* <LogArchive /> */}
-        <h1>{foundLog.first_name}'s Practice Log</h1>
-        <Button onClick={() => history.goBack()}>Go Back</Button>
-        <Card body className='practice-log-container'>
+        <Button onClick={() => history.goBack()}>⬅ Go Back</Button>
+
+        <Card
+          class='row align-items-center'
+          body
+          className='log-details-container'
+          class='col-md-8 offset-md-2'
+          border='info'
+        >
+          <h1>{foundLog.first_name}'s Practice Log</h1>
+
+          <hr />
+
           <div key={foundLog.id}>
             <ul value={foundLog.date_of}>
               <li>
-                Date: {moment(foundLog.date_of).format('MMMM Do YYYY')}
+                Date:
+                <br />
+                {moment(foundLog.date_of).format('MMMM Do YYYY')}
                 <br />
                 <br />
-                Duration: {foundLog.practice_length}
+                Duration:
+                <br />
+                {foundLog.practice_length} minutes
                 <br />
                 <br />
-                Topic: {foundLog.topic}
+                Topic:
+                <br />
+                {foundLog.topic}
                 <br />
                 <br />
-                Improved on: {foundLog.improved_on}
+                Improved on:
+                <br />
+                {foundLog.improved_on}
                 <br />
                 <br />
-                Needs work: {foundLog.weak_points}
+                Needs work:
+                <br />
+                {foundLog.weak_points}
                 <br />
                 <br />
-                Questions: {foundLog.questions}
+                Questions:
                 <br />
-                <br />
+                {foundLog.questions}
               </li>
             </ul>
           </div>
@@ -114,7 +134,7 @@ export default function LogDetails() {
             <Button onClick={deleteLog}>Delete Log</Button>
           )}
         </Card>
-          {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
+        {viewPracticeLogForm && <EditLogForm practiceLog={foundLog} />}
       </div>
     </>
   );

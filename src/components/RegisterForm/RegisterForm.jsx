@@ -113,20 +113,6 @@ function RegisterForm() {
         />
       </Form.Group>
 
-      {/* <div>
-        <label htmlFor='lastname'>
-          Last:
-          <input
-            placeholder='Last name'
-            type='text'
-            name='lastname'
-            value={lastName}
-            required
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label>
-      </div> */}
-
       <Form.Group controlId='formFirstName'>
         <Form.Label>Email:</Form.Label>
         <Form.Control
@@ -138,19 +124,6 @@ function RegisterForm() {
           onChange={(event) => setEmail(event.target.value)}
         />
       </Form.Group>
-      {/* <div>
-        <label htmlFor='email'>
-          Email:
-          <input
-            placeholder='email'
-            type='text'
-            name='email'
-            value={email}
-            required
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-      </div> */}
 
       <Form.Group controlId='formFirstName'>
         <Form.Label>Phone:</Form.Label>
@@ -163,19 +136,6 @@ function RegisterForm() {
           onChange={(event) => setPhoneNumber(event.target.value)}
         />
       </Form.Group>
-      {/* <div>
-        <label htmlFor='phone_number'>
-          Phone:
-          <input
-            placeholder='ex. 555-555-5555'
-            type='text'
-            name='phone_number'
-            value={phoneNumber}
-            required
-            onChange={(event) => setPhoneNumber(event.target.value)}
-          />
-        </label>
-      </div> */}
 
       <Form.Group controlId='instruments'>
         <Form.Label>Instrument:</Form.Label>

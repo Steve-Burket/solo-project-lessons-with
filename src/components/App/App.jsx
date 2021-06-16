@@ -14,6 +14,7 @@ import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import StudentProtectedRoute from '../ProtectedRoute/StudentProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -127,11 +128,9 @@ function App() {
           </ProtectedRoute>
 
           {/* Here is the StudentRoster component */}
-          {user.is_instructor === true && user.id && (
-            <ProtectedRoute exact path={'/student'}>
+            <StudentProtectedRoute exact path={'/student'}>
               <StudentRoster />
-            </ProtectedRoute>
-          )}
+            </StudentProtectedRoute>
 
           {user.is_instructor === false && user.id && (
             <ProtectedRoute exact path={'/practice_log'}>

@@ -90,15 +90,14 @@ function PracticeLog() {
 
             <Form.Group controlId='input-duration'>
               <Form.Label>
-                Duration:
+                Duration: 
                 <Form.Control
-                  placeholder='Duration'
+                  placeholder='In minutes'
                   type='text'
                   name='duration'
                   value={duration}
                   onChange={(event) => setDuration(event.target.value)}
                 />
-                minutes
               </Form.Label>
             </Form.Group>
 
