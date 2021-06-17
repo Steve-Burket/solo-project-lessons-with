@@ -17,6 +17,7 @@
   border: 0;
   outline: 0;
   border-bottom: 2px solid darkblue;
+  width: 100%;
 }
 
 #input-date {
@@ -30,5 +31,5 @@
   border: 0;
   outline: 0;
   border-bottom: 2px solid darkblue;
-  width: 50%;
+  width: 55%;
 }

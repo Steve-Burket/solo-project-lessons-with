@@ -37,7 +37,7 @@ function LoginForm() {
         </h3>
       )}
 
-      <Form.Group controlId='formLastName'>
+      <Form.Group controlId='formUsername'>
         <Form.Label>Username:</Form.Label>
         <Form.Control
           className='smaller-input'
@@ -49,7 +49,7 @@ function LoginForm() {
         />
       </Form.Group>
 
-      <Form.Group controlId='formLastName'>
+      <Form.Group controlId='formPassword'>
         <Form.Label> Password:</Form.Label>
         <Form.Control
           className='smaller-input'

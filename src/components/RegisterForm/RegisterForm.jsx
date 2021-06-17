@@ -60,6 +60,7 @@ function RegisterForm() {
   const displayInstructorField = (e) => {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
+    setIsInstructor(false);
   };
 
   // const undisplayInstructorField = (e) => {
@@ -119,7 +120,7 @@ function RegisterForm() {
         />
       </Form.Group>
 
-      <Form.Group controlId='formFirstName'>
+      <Form.Group controlId='formEmail'>
         <Form.Label>Email:</Form.Label>
         <Form.Control
           placeholder='email'
@@ -131,7 +132,7 @@ function RegisterForm() {
         />
       </Form.Group>
 
-      <Form.Group controlId='formFirstName'>
+      <Form.Group controlId='formPhone'>
         <Form.Label>Phone:</Form.Label>
         <Form.Control
           placeholder='ex. 555-555-5555'
@@ -165,29 +166,6 @@ function RegisterForm() {
           })}
         </Form.Control>
       </Form.Group>
-      {/* <div>
-          <label htmlFor='instrument'>
-            Instrument:
-            <select
-              name='instruments'
-              id='instruments'
-              name='instrument'
-              value={instrument}
-              required
-              onChange={(event) => setInstrument(event.target.value)}
-            >
-              <option hidden>Select</option>
-
-              {instruments.map((inst, i) => {
-                return (
-                  <option key={i} value={inst}>
-                    {inst}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-        </div> */}
 
       <Form.Group controlId='formUserName'>
         <Form.Label>Username:</Form.Label>
@@ -201,20 +179,6 @@ function RegisterForm() {
         />
       </Form.Group>
 
-      {/* <div>
-        <label htmlFor='username'>
-          Username:
-          <input
-            placeholder='Username'
-            type='text'
-            name='username'
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div> */}
-
       <Form.Group controlId='formPassword'>
         <Form.Label>Password:</Form.Label>
         <Form.Control
@@ -226,20 +190,6 @@ function RegisterForm() {
           onChange={(event) => setPassword(event.target.value)}
         />
       </Form.Group>
-
-      {/* <div>
-        <label htmlFor='password'>
-          Password:
-          <input
-            placeholder='Password'
-            type='password'
-            name='password'
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div> */}
 
       {/* move to separate component eventually */}
       {viewInstructorList && (
@@ -276,7 +226,7 @@ function RegisterForm() {
             label='Student'
             name='radio-btn'
             id='radio1'
-            value={isInstructor}
+            // value={isInstructor}
             onChange={() => setIsInstructor(false)}
           />
         </Form.Group>

@@ -75,7 +75,7 @@ function EditLogForm(props) {
           <h3>Practice Log</h3>
           <hr/>
           <Form onSubmit={updatePracticeLog} value={logDetails.id}>
-            <Form.Group controlId='input-date'>
+            <Form.Group controlId='input-edit-date'>
               <Form.Label>
                 Date:
                 <Form.Control
@@ -90,7 +90,7 @@ function EditLogForm(props) {
 
             <br />
 
-            <Form.Group controlId='input-duration'>
+            <Form.Group controlId='input-edit-duration'>
               <Form.Label>
                 Duration:
                 <Form.Control

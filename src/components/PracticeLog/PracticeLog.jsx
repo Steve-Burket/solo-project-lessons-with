@@ -54,7 +54,7 @@ function PracticeLog() {
 
   return (
     <>
-      <Card body className='practice-log-container'>
+      <Card body border='primary' className='practice-log-container'>
         <h2>What did you practice today, {user.first_name}?</h2>
         <hr />
         <div>
@@ -108,7 +108,7 @@ function PracticeLog() {
             <Form.Group controlId='input'>
               <Form.Label>What went well:</Form.Label>
               <Form.Control
-                placeholder='What has gotten easier?'
+                placeholder='I have gotten better at...'
                 type='text'
                 name='improved_on'
                 value={improvedOn}

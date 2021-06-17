@@ -18,7 +18,7 @@ function* fetchMyTeacher() {
     console.log('here is the teacher data', myTeacher);
     
     yield put({ type: 'SET_MY_TEACHER', payload: myTeacher.data });
-    console.log('Here is a list of the my teachers', myTeacher.data);
+    console.log('Here is the student\'s teacher', myTeacher.data);
   } catch (error) {
     console.log('Teachers get request failed', error);
   }
