@@ -7,7 +7,7 @@ import LogDetails from './LogDetails';
 import './LogArchive.css';
 
 // react bootstrap!
-import Table from 'react-bootstrap/Table';
+import { Button, Table } from 'react-bootstrap';
 
 export default function LogArchive() {
   // Reducer Store
@@ -15,7 +15,6 @@ export default function LogArchive() {
   // const details = useSelector((store) => store.logDetails);
   const user = useSelector((store) => store.user);
   console.log(practiceLog);
-  // console.log('here are the log details:', details);
 
   // HOOKS
   const history = useHistory();
@@ -24,46 +23,83 @@ export default function LogArchive() {
 
   // Fetch practice log that is clicked on
   const fetchPracticeLogs = (log) => {
-    // dispatch({
-    //   type: 'FETCH_PRACTICE_LOG_DETAILS',
-    //   payload: log
-    // });
     history.push(`/log/details/${log.id}`);
   };
+
+  function isStudent() {
+    if (user.is_instructor === false) {
+      return (
+        <div>
+          <Table striped bordered hover variant='secondary' size='sm'>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Topic</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {practiceLog.map((log) => {
+                console.log(`This is ${log.first_name}'s log`);
+                return (
+                  <tr key={log.id} value={log.id}>
+                    <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+                    <td>{log.topic}</td>
+
+                    <td>
+                      <Button onClick={() => fetchPracticeLogs(log)}>
+                        View
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Table striped bordered hover variant='secondary' size='sm'>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Instrument</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {practiceLog.map((log) => {
+                console.log(`This is ${log.first_name}'s log`);
+                return (
+                  <tr key={log.id} value={log.id}>
+                    <td>
+                      {log.first_name} {log.last_name}
+                    </td>
+                    <td>{log.instrument}</td>
+                    <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+
+                    <td>
+                      <Button onClick={() => fetchPracticeLogs(log)}>
+                        View
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      );
+    }
+  }
 
   return (
     <>
       <h1>Select To View Log</h1>
-      <div>
-        <Table striped bordered hover variant='dark' size='sm'>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Instrument</th>
-              <th>Date</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {practiceLog.map((log) => {
-              console.log(`This is ${log.first_name}'s log`);
-              return (
-                <tr key={log.id} value={log.id}>
-                  <td>
-                    {log.first_name} {log.last_name}
-                  </td>
-                  <td>{log.instrument}</td>
-                  <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
-
-                  <td>
-                    <button onClick={() => fetchPracticeLogs(log)}>View</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      </div>
+      {isStudent(user.is_instructor)}
     </>
   );
 }

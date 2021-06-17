@@ -81,7 +81,7 @@ export default function LogDetails() {
           body
           className='log-details-container'
           class='col-md-8 offset-md-2'
-          border='info'
+          border='primary'
         >
           <h1>{foundLog.first_name}'s Practice Log</h1>
 

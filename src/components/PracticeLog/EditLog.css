@@ -1,6 +1,34 @@
 .edit-log-container {
-    width: 20%;
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  border-radius: 50px;
+
+  width: 70%;
+  padding: 20px;
+  text-align: center;
+}
+
+.edit-log-form {
+  padding: 20px;
+  border: 1px solid green;
+  width: 50%;
+  border-radius: 50px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+#input-date {
+  margin: 0 auto;
+  float: none;
+  text-align: center;
+  width: 55%;
+}
+
+#input-duration {
+  margin: 0 auto;
+  float: none;
+  text-align: center;
+  width: 52%;
 }

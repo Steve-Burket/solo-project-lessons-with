@@ -75,22 +75,11 @@ function PracticeLog() {
               />
             </Form.Group>
 
-            {/* <label htmlFor='date'>
-              Date:
-              <input
-                placeholder='DD/MM/YYYY'
-                type='text'
-                name='date'
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-              />
-            </label> */}
-
             <br />
 
             <Form.Group controlId='input-duration'>
               <Form.Label>
-                Duration: 
+                Duration:
                 <Form.Control
                   placeholder='In minutes'
                   type='text'

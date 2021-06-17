@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import './EditLog.css';
 
 // react bootstrap!
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import Card from 'react-bootstrap/Card';
+import { Card, Form } from 'react-bootstrap';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function EditLogForm(props) {
   const user = useSelector((store) => store.user);
-  // const logDetails = useSelector((store) => store.logDetails);
+  const myTeacher = useSelector((store) => store.myTeacher);
   const logDetails = props.practiceLog;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -68,79 +69,97 @@ function EditLogForm(props) {
 
   return (
     <>
-      <Card body className='edit-log-container'>
+      <Card body border='dark' className='edit-log-container'>
         <h2>What would you like to edit, {user.first_name}?</h2>
-        <div className='practice-log'>
+        <div className='edit-log-form'>
           <h3>Practice Log</h3>
-          <form onSubmit={updatePracticeLog} value={logDetails.id}>
-            <label htmlFor='date'>
-              Date:
-              <input
-                placeholder='DD/MM/YYYY'
-                type='text'
-                name='date'
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-              />
-            </label>
+          <hr/>
+          <Form onSubmit={updatePracticeLog} value={logDetails.id}>
+            <Form.Group controlId='input-date'>
+              <Form.Label>
+                Date:
+                <Form.Control
+                  placeholder={logDetails.date_of}
+                  type='text'
+                  name='date'
+                  value={date}
+                  onChange={(event) => setDate(event.target.value)}
+                />
+              </Form.Label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='duration'>
-              Duration:
-              <input
-                type='text'
-                name='duration'
-                value={duration}
-                onChange={(event) => setDuration(event.target.value)}
-              />
-              minutes
-            </label>
+
+            <Form.Group controlId='input-duration'>
+              <Form.Label>
+                Duration:
+                <Form.Control
+                  placeholder={logDetails.duration}
+                  type='text'
+                  name='duration'
+                  value={duration}
+                  onChange={(event) => setDuration(event.target.value)}
+                />
+                minutes
+              </Form.Label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='topic'>
-              What did you practice:
-              <br />
-              <input
+
+            <Form.Group controlId='input'>
+              <Form.Label>What did you practice:</Form.Label>
+              <Form.Control
                 placeholder={logDetails.topic}
                 type='text'
                 name='topic'
                 value={topic}
                 onChange={(event) => setTopic(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='improved_on'>
-              What went well:
-              <br />
-              <input
+
+            <Form.Group controlId='input'>
+              <Form.Label>What went well:</Form.Label>
+              <Form.Control
                 placeholder={logDetails.improved_on}
                 type='text'
                 name='improved_on'
                 value={improvedOn}
                 onChange={(event) => setImprovedOn(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='weak_points'>
-              What you would like to improve on:
-              <input
+
+            <Form.Group controlId='input'>
+              <Form.Label>What you would like to improve on:</Form.Label>
+              <Form.Control
                 placeholder={logDetails.weak_points}
                 type='text'
                 name='weak_points'
                 value={weakPoints}
                 onChange={(event) => setWeakPoints(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
-            <label htmlFor='questions'>
-              Questions for your teacher:
-              <input
+
+            <Form.Group controlId='text-area'>
+              <Form.Label> Questions for {myTeacher.first_name}:</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows={3}
                 placeholder={logDetails.questions}
                 type='text'
                 name='questions'
                 value={questions}
                 onChange={(event) => setQuestions(event.target.value)}
               />
-            </label>
+            </Form.Group>
+
             <br />
+
             <input className='btn' type='submit' name='submit' value='Save' />
             <input
               className='btn'
@@ -149,7 +168,7 @@ function EditLogForm(props) {
               defaultValue='Cancel'
               onClick={() => history.push(`/log/details/${logDetails.id}`)}
             />
-          </form>
+          </Form>
         </div>
       </Card>
     </>
