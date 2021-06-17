@@ -58,7 +58,7 @@ function PracticeLog() {
         <h2>What did you practice today, {user.first_name}?</h2>
         <hr />
         <div>
-          <h4>Practice Log</h4>
+          <h3>Practice Log</h3>
           <Form
             className='practice-log-form'
             onSubmit={submitPracticeLog}
