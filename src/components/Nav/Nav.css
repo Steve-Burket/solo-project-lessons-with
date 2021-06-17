@@ -46,6 +46,10 @@
 .navLink:hover {
   /* background-color: #02A4D3; */
     background-color: #d61e1e;
-    color: #2D383A;
+    /* color: #2D383A; */
+    color: white;
+    padding: 30px 15px;
+    font-size: 18px;
+    /* border: 1px solid black; */
 
 }
