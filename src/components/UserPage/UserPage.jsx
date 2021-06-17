@@ -11,15 +11,22 @@ import Card from 'react-bootstrap//Card';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const myTeacher = useSelector((store) => store.myTeacher);
 
   console.log('here is the students instrument:', user.instrument);
+
+  function studentGreeting() {
+  if (user.is_instructor === !true) {
+    return <p>Your instructor is {myTeacher.first_name}</p>;
+  }
+}
 
   return (
     <div className='container'>
       <Card id='greeting'>
         <h2>Hello, {user.first_name}!</h2>
         <hr />
-        <p>Your primary instrument is: {user.instrument}</p>
+        {studentGreeting()}
       </Card>
       {user.is_instructor === true && <StudentRoster />}
       {user.is_instructor === false && <PracticeLog />}
