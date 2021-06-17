@@ -61,7 +61,6 @@ function RegisterForm() {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
     setIsInstructor(false);
-    setInstructorIs(null);
   };
 
 
