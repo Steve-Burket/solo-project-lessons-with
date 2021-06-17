@@ -6,9 +6,10 @@
 
   padding: 10px;
   margin: 0 0 30px;
+  /* background-color: #0081AB; */
   background-color: #ab0039;
   overflow: hidden;
-  border: 2px solid black;
+  border: 4px ridge rgb(189, 182, 98);
 }
 
 .nav a {
@@ -16,12 +17,13 @@
 }
 
 .nav-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: #f2f2f2;
   padding-left: 10px;
   margin: 0;
   text-align: center;
+  font-family: chalkboard;
 }
 
 .navLink {
@@ -44,5 +46,6 @@
 .navLink:hover {
   /* background-color: #02A4D3; */
     background-color: #d61e1e;
+    color: #2D383A;
 
 }

@@ -1,0 +1,45 @@
+/* h1 {
+    text-align: center;
+} */
+
+h3 {
+  text-decoration: underline;
+}
+
+.contact-info-container {
+  /* padding: 10px; */
+  width: 20%;
+  border-radius: 100px;
+  margin: 20px;
+  float: right;
+  /* margin-bottom: 10px; */
+  text-align: center;
+}
+
+.found-logs {
+  padding: 10px;
+  width: 100%;
+  border-radius: 100px;
+  margin: 0 auto;
+  float: left;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.practice-log-archive-container {
+  margin: 10px;
+  text-align: center;
+  width: 40%;
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.student-details-archive-table {
+  text-align: center;
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  float: right;
+}

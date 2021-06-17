@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 
-import Table from 'react-bootstrap/Table'
+import './StudentDetails.css';
+
+import { Card, Table, Button } from 'react-bootstrap';
 
 import './StudentRoster.css';
 
@@ -29,6 +31,7 @@ function StudentRoster(props) {
   );
 
   // Bail out early if there is no student loaded yet
+  // add a react spinner stretch goal
   if (!foundStudent) {
     return <h1>loading...</h1>;
   }
@@ -47,38 +50,59 @@ function StudentRoster(props) {
   console.log('here are the found logs:', foundLogs);
   return (
     <>
-      <h1>Student Details: {foundStudent.id}</h1>
-      {foundLogs.length} practice logs found:
-      <div>
-        <Table striped bordered hover variant='dark' size='small'>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Instrument</th>
-              <th>Date</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foundLogs.map((log) => {
-              console.log(`This is ${log.first_name}'s log`);
-              return (
-                <tr key={log.id} value={log.id}>
-                  <td>
-                    {log.first_name} {log.last_name}
-                  </td>
-                  <td>{log.instrument}</td>
-                  <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+      <Card body className='contact-info-container' border='info'>
+        <h3 stlye={{ textDecoration: 'underline' }}>Contact Info</h3>
+        <p>
+          Phone #{<br />}
+          {foundStudent.phone_number}
+          {<br />}
+          Email
+          {<br />}
+          {foundStudent.email}
+        </p>
+      </Card>
 
-                  <td>
-                    <button onClick={() => viewPracticeLogs(log)}>View</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      </div>
+      <Card body border='primary' className='practice-log-archive-container'>
+        <h1>
+          {foundStudent.first_name} {foundStudent.last_name}
+        </h1>
+        <h5>{foundStudent.instrument}</h5>
+        <hr />
+        <div>
+          <p className='found-logs'>Practice logs found: {foundLogs.length}</p>
+          <Table
+            striped
+            bordered
+            hover
+            variant='secondary'
+            size='sm'
+            className='student-details-archive-table'
+          >
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {foundLogs.map((log) => {
+                console.log(`This is ${log.first_name}'s log`);
+                return (
+                  <tr key={log.id} value={log.id}>
+                    <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+
+                    <td>
+                      <Button onClick={() => viewPracticeLogs(log)}>
+                        View
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      </Card>
     </>
   );
 }
