@@ -45,6 +45,7 @@ function RegisterForm() {
   const [isNotInstructor, setIsNotInstructor] = useState(true);
   const [instructorIs, setInstructorIs] = useState(0);
   const [viewInstructorList, setInstructorList] = useState(false);
+  // const [unviewInstructorList, setUnviewInstructorList] = useState(true);
   const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('foo');
 
@@ -60,6 +61,11 @@ function RegisterForm() {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
   };
+
+  // const undisplayInstructorField = (e) => {
+  //   console.log('in undisplayInstructorField');
+  //   setUnviewInstructorList(unviewInstructorList);
+  // };
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -235,6 +241,7 @@ function RegisterForm() {
         </label>
       </div> */}
 
+      {/* move to separate component eventually */}
       {viewInstructorList && (
         <Form.Group controlId='formInstructorIs'>
           <Form.Label>Instructor:</Form.Label>
@@ -259,138 +266,32 @@ function RegisterForm() {
           </Form.Control>
         </Form.Group>
       )}
-
-      {/* move to separate component eventually */}
-      {/* <div>
-        {viewInstructorList && (
-          <label htmlFor='instructor_is'>
-            Instructor:
-            <select
-              type='instructor_is'
-              name='instructor_is'
-              value={instructorIs}
-              required
-              onChange={(event) => setInstructorIs(event.target.value)}
-            >
-              <option hidden>Select</option>
-              {teachers.map((teach) => {
-                console.log(teach.first_name, teach.last_name);
-                return (
-                  <option key={teach.id} value={teach.id}>
-                    {teach.first_name} {teach.last_name}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-        )}
-      </div> */}
       {/* move to separate component eventually */}
 
-      {/* <ToggleButtonGroup
-        defaultValue={false}
-        type='radio'
-        name='radio'
-        // value={value}
-        // checked={isInstructor === radio.value}
-        onChange={(e) => setIsInstructor(e.currentTarget.value)}
-      >
-        <ToggleButton value={false} onClick={displayInstructorField}>
-          Student
-        </ToggleButton>
-        <ToggleButton value={true}>Teacher</ToggleButton>
-      </ToggleButtonGroup> */}
-
-      {/* <Form.Group controlId='formStudentSelect'>
-        <Form.Control
-          type='radio'
-          name='is_instructor'
-          value='false'
-          required
-          onChange={(event) => setIsInstructor(event.target.value)}
-        />
-
-        {radios.map((radio, index) => (
-          <ToggleButton
-            onClick={displayInstructorField}
-            key={index}
-            type='radio'
-            name='radio'
-            value={radio.value}
-            checked={isInstructor === radio.value}
-            onChange={(e) => setIsInstructor(e.currentTarget.value)}
-          >
-            {radio.name}
-          </ToggleButton>
-        ))}
-        {['radio'].map((type) => (
-          <div key={`custom-${type}`} className='radio-btn'>
-            <Form.Check
-              custom
-              type={type}
-              id={`custom-${type}`}
-              label={`Student ${type}`}
-            />
-
-            <Form.Check />
-          </div>
-        ))}
-      </Form.Group> */}
-
-      {/* <ButtonGroup toggle> */}
-      {/* {radios.map((radio, index) => (
-      //   <ToggleButton
-      //     key={index}
-      //     type='radio'
-      //     name='radio'
-      //     value={radio.value}
-      //     checked={radioValue === radio.value}
-      //     onChange={(e) => setRadioValue(e.currentTarget.value)}
-      //   >
-      //     {radio.name}
-      //   </ToggleButton>
-      // ))} */}
-      {/* </ButtonGroup> */}
-
-      <div>
-        <label htmlFor='is_instructor'>
-          <input
+      <Form.Row>
+        <Form.Group>
+          <Form.Check
             onClick={displayInstructorField}
             type='radio'
-            id='student'
-            name='is_instructor'
-            value='false'
-            required
-            onChange={(event) => setIsInstructor(event.target.value)}
-          />
-          Student
-        </label>
-      </div>
-
-      {/* <Form.Group controlId='formTeacher'>
-        <Form.Label>First:</Form.Label>
-        <Form.Control
-          type='radio'
-          name='is_instructor'
-          value={isInstructor}
-          required
-          onChange={(event) => setIsInstructor(event.target.value)}
-        />
-      </Form.Group> */}
-
-      <div>
-        <label htmlFor='is_instructor'>
-          <input
-            type='radio'
-            id='teacher'
-            name='is_instructor'
+            label='Student'
+            name='radio-btn'
+            id='radio1'
             value={isInstructor}
-            required
-            onChange={(event) => setIsInstructor(event.target.value)}
+            onChange={() => setIsInstructor(false)}
           />
-          Teacher
-        </label>
-      </div>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Check
+            type='radio'
+            label='Teacher'
+            name='radio-btn'
+            id='radio2'
+            value={isInstructor}
+            onChange={() => setIsInstructor(true)}
+          />
+        </Form.Group>
+      </Form.Row>
 
       <div>
         <input className='btn' type='submit' name='submit' value='Register' />
