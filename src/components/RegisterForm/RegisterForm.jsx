@@ -43,7 +43,7 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
   const [isNotInstructor, setIsNotInstructor] = useState(true);
-  const [instructorIs, setInstructorIs] = useState(0);
+  const [instructorIs, setInstructorIs] = useState(null);
   const [viewInstructorList, setInstructorList] = useState(false);
   // const [unviewInstructorList, setUnviewInstructorList] = useState(true);
   const [checked, setChecked] = useState(false);
@@ -61,6 +61,7 @@ function RegisterForm() {
     console.log('in displayInstructorField');
     setInstructorList(!viewInstructorList);
     setIsInstructor(false);
+    setIntructrorIs(null);
   };
 
   // const undisplayInstructorField = (e) => {

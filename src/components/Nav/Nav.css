@@ -30,11 +30,12 @@
   display: inline-block;
   color: #f2f2f2;
   /* background-color: #0081AB; */
-  background-color: #ab0039; 
+  background-color: #ab0039;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
+  font-family: chalkboard;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -44,12 +45,11 @@
 }
 
 .navLink:hover {
+  font-family: chalkboard;
   /* background-color: #02A4D3; */
-    background-color: #d61e1e;
-    /* color: #2D383A; */
-    color: white;
-    padding: 30px 15px;
-    font-size: 18px;
-    /* border: 1px solid black; */
-
+  background-color: #d61e1e;
+  color: white;
+  padding: 30px 15px;
+  font-size: 19px;
+  border: 2px outset rgb(189, 182, 98);
 }
