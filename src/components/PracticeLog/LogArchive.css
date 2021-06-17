@@ -1,29 +1,7 @@
-/* table, tr, th, td {
+table, tr, th, td {
     text-align: center;
     width: 10%;
     border: 1px solid black;
-} */
-
-h1 {
-  text-align: center;
-  /* text-decoration: underline;
-  font-weight: lighter; */
 }
 
-.student-archive-container {
-  margin: 50px 300px;
-  text-align: center;
-  width: 50%;
-  border-radius: 10px;
-  float: center;
-}
-
-.teacher-archive-container {
-  margin: 50px 300px;
-  text-align: center;
-  width: 50%;
-  border-radius: 10px;
-  float: center;
-}
-
-
+ 

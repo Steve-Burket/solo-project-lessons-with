@@ -51,7 +51,7 @@ function StudentRoster(props) {
   return (
     <>
       <Card body className='contact-info-container' border='info'>
-        <h3>Contact Info</h3>
+        <h3 stlye={{ textDecoration: 'underline' }}>Contact Info</h3>
         <p>
           Phone #{<br />}
           {foundStudent.phone_number}
