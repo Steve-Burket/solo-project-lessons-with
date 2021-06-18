@@ -55,7 +55,9 @@ function App() {
     <Router>
       <div
         style={{
-          backgroundImage: 'url(/images/LessonsWithLandingPagePic.png)'
+          backgroundImage: 'url(/images/LessonsWithLandingPagePic.png)',
+          backgroundRepeat: 'no-repeat',
+           backgroundSize: 'cover'
         }}
       >
         <Nav />
@@ -129,18 +131,18 @@ function App() {
           </ProtectedRoute>
 
           {/* Here is the StudentRoster component */}
-            <StudentProtectedRoute exact path={'/student'}>
-              <StudentRoster />
-            </StudentProtectedRoute>
+          <StudentProtectedRoute exact path={'/student'}>
+            <StudentRoster />
+          </StudentProtectedRoute>
 
-            <TeacherProtectedRoute exact path={'/practice_log'}>
-              <PracticeLog />
-            </TeacherProtectedRoute>
+          <TeacherProtectedRoute exact path={'/practice_log'}>
+            <PracticeLog />
+          </TeacherProtectedRoute>
 
           {/* Here is the StudentRoster component */}
-            <StudentProtectedRoute exact path={'/student/details/:studentID'}>
-              <StudentDetails />
-            </StudentProtectedRoute>
+          <StudentProtectedRoute exact path={'/student/details/:studentID'}>
+            <StudentDetails />
+          </StudentProtectedRoute>
 
           {/* Here is the Log Details component */}
           <ProtectedRoute exact path={`/log/details/:logID`}>
