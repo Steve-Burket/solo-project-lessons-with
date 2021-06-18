@@ -34,9 +34,9 @@ function Nav() {
         </Link>
 
         {user.is_instructor === true && user.id && (
-            <Link className='navLink' to='/student'>
-              Roster
-            </Link>
+          <Link className='navLink' to='/student'>
+            Roster
+          </Link>
         )}
 
         {user.id && (
@@ -45,18 +45,18 @@ function Nav() {
           </Link>
         )}
 
+        <Link className='navLink' to='/about'>
+          About
+        </Link>
+
         {user.id && (
           <>
             <Link className='navLink' to='/info'>
               Info Page
             </Link>
-            <LogOutButton className='navLink' to='/user'/>
+            <LogOutButton className='navLink' to='/user' />
           </>
         )}
-
-        <Link className='navLink' to='/about'>
-          About
-        </Link>
       </div>
     </div>
   );

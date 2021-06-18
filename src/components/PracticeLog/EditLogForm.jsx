@@ -72,7 +72,7 @@ function EditLogForm(props) {
       <Card body border='dark' className='edit-log-container'>
         <h2>What would you like to edit, {user.first_name}?</h2>
         <div className='edit-log-form'>
-          <h3>Practice Log</h3>
+          <h4>Practice Log</h4>
           <hr/>
           <Form onSubmit={updatePracticeLog} value={logDetails.id}>
             <Form.Group controlId='input-edit-date'>
