@@ -41,7 +41,14 @@ function PracticeLog() {
         weak_points: weakPoints,
         questions: questions
       }
+
+     
     });
+
+    // refresh practice log archive
+     dispatch({
+       type: 'FETCH_STUDENT_PRACTICE_LOG'
+     });
 
     // clear input fields
     setDate('');

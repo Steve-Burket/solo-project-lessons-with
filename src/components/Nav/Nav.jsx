@@ -8,7 +8,6 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const teacher = useSelector((store) => store.myTeacher);
 
-
   console.log(teacher.first_name);
   console.log(user.instructor_is);
 
@@ -23,16 +22,18 @@ function Nav() {
   }
 
   // don't show teacher in title when logged out
-  // function teacherInTitle() {
-  // if (path = '/logout') {
-      
-  // }
-  // }
+  function teacherInTitle() {
+    if (user.is_instructor === !true) {
+      return teacher.first_name;
+    } else {
+      return '';
+    }
+  }
 
   return (
     <div className='nav'>
       <Link to='/home'>
-        <h2 className='nav-title'>LESSONS WITH {teacher.first_name}</h2>
+        <h2 className='nav-title'>LessonsWith {teacherInTitle()}</h2>
       </Link>
 
       <div>

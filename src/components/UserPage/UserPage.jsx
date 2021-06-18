@@ -8,8 +8,6 @@ import './UserPage.css';
 // BOOTSTRAP!
 import Card from 'react-bootstrap//Card';
 
-// const { Header, Content } = Layout;
-
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);

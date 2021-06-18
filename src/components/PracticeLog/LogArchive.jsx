@@ -19,7 +19,14 @@ export default function LogArchive() {
   // HOOKS
   const history = useHistory();
   const dispatch = useDispatch();
-  // const params = useParams();
+
+  if (user.is_instructor != true) {
+  useEffect(() => { 
+    dispatch({ type: 'FETCH_STUDENT_PRACTICE_LOG' });
+  }, []);
+}
+
+
 
   // Fetch practice log that is clicked on
   const fetchPracticeLogs = (log) => {

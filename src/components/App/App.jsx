@@ -57,7 +57,7 @@ function App() {
         style={{
           backgroundImage: 'url(/images/LessonsWithLandingPagePic.png)',
           backgroundRepeat: 'no-repeat',
-           backgroundSize: 'cover'
+          backgroundSize: 'cover'
         }}
       >
         <Nav />
