@@ -43,16 +43,8 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [isInstructor, setIsInstructor] = useState(true);
   const [isNotInstructor, setIsNotInstructor] = useState(true);
-  const [instructorIs, setInstructorIs] = useState(0);
+  const [instructorIs, setInstructorIs] = useState(null);
   const [viewInstructorList, setInstructorList] = useState(false);
-  // const [unviewInstructorList, setUnviewInstructorList] = useState(true);
-  const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState('foo');
-
-  const radios = [
-    { name: 'Student', value: 'student' },
-    { name: 'Teacher', value: 'teacher' }
-  ];
 
   console.log(teachers);
 
@@ -62,7 +54,6 @@ function RegisterForm() {
     setInstructorList(!viewInstructorList);
     setIsInstructor(false);
   };
-
 
   const registerUser = (event) => {
     event.preventDefault();
