@@ -1,4 +1,4 @@
-table,
+/* table,
 tr,
 th,
 td {
@@ -6,11 +6,10 @@ td {
   width: 50%;
   border: 1px solid black;
   border-collapse: collapse;
-}
+} */
 
 .student-roster {
   text-align: center;
-  padding: 20px;
   width: 50%;
   border-radius: 50px;
   margin: 0 auto;

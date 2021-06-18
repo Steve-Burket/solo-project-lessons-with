@@ -58,9 +58,9 @@ function Nav() {
 
         {user.id && (
           <>
-            <Link className='navLink' to='/info'>
+            {/* <Link className='navLink' to='/info'>
               Info Page
-            </Link>
+            </Link> */}
             <LogOutButton className='navLink' to='/user' />
           </>
         )}
