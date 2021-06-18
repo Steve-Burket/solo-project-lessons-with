@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import './StudentRoster.css';
 
 // table from react bootstrap
-import Table from 'react-bootstrap/Table';
+import { Table, Card, Button } from 'react-bootstrap';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -36,33 +36,36 @@ function StudentRoster(props) {
 
   return (
     <div>
-      <h2>Student Roster</h2>
-      <Table striped bordered hover variant='dark' size='sm'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Instrument</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => {
-            return (
-              <tr key={student.id}>
-                <td>
-                  {student.first_name} {student.last_name}
-                </td>
-                <td>{student.instrument}</td>
-                <td>
-                  <button onClick={() => viewStudentDetails(student.id)}>
-                    View
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <Card body className='student-roster' border='primary'>
+        <h2>Student Roster</h2>
+        <hr/>
+        <Table striped bordered hover variant='secondary' size='sm'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Instrument</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => {
+              return (
+                <tr key={student.id}>
+                  <td>
+                    {student.first_name} {student.last_name}
+                  </td>
+                  <td>{student.instrument}</td>
+                  <td>
+                    <Button onClick={() => viewStudentDetails(student.id)}>
+                      View
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </Card>
     </div>
   );
 }

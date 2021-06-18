@@ -1,6 +1,19 @@
-table, tr, th, td {
-    text-align: center;
-    width: 50%;
-    border: 1px solid black;
-    border-collapse: collapse;
+table,
+tr,
+th,
+td {
+  text-align: center;
+  width: 50%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.student-roster {
+  text-align: center;
+  padding: 20px;
+  width: 50%;
+  border-radius: 50px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
 }

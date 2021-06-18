@@ -12,14 +12,20 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const myTeacher = useSelector((store) => store.myTeacher);
-
+console.log(myTeacher.phone);
   console.log('here is the students instrument:', user.instrument);
 
   function studentGreeting() {
-  if (user.is_instructor === !true) {
-    return <p>Your instructor is {myTeacher.first_name}</p>;
+    if (user.is_instructor === !true) {
+      return (
+        <>
+          <p>Your instructor is {myTeacher.first_name}</p>
+          <p>Phone: {myTeacher.phone_number}</p>
+          <p>Email: {myTeacher.email}</p>
+        </>
+      );
+    }
   }
-}
 
   return (
     <div className='container'>
