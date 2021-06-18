@@ -21,7 +21,9 @@ function UserPage() {
     if (user.is_instructor === !true) {
       return (
         <>
-          <p>Your instructor is {myTeacher.first_name}</p>
+          <p>
+            Your instructor is {myTeacher.first_name} {myTeacher.last_name}
+          </p>
           <p>Phone: {myTeacher.phone_number}</p>
           <p>Email: {myTeacher.email}</p>
         </>
