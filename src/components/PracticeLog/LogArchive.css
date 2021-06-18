@@ -18,6 +18,11 @@ td {
 }
 
 .teacher-archive {
-
-  
+  text-align: center;
+  padding: 20px;
+  width: 50%;
+  border-radius: 50px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
 }

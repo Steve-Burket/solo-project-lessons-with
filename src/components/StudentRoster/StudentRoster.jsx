@@ -67,6 +67,7 @@ function StudentRoster(props) {
           </tbody>
         </Table>
       </Card>
+      <Button onClick={() => history.goBack()}>⬅ Go Back</Button>
     </div>
   );
 }

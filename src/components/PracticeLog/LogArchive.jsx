@@ -30,6 +30,7 @@ export default function LogArchive() {
     if (user.is_instructor === false) {
       return (
         <div>
+          <Button onClick={() => history.goBack()}>⬅ Go Back</Button>
           <Card body className='student-archive' border='primary'>
             <h1>Select To View Log</h1>
             <hr />
@@ -68,6 +69,7 @@ export default function LogArchive() {
     } else {
       return (
         <div>
+          <Button onClick={() => history.goBack()}>⬅ Go Back</Button>
           <Card body className='student-archive' border='primary'>
             <h1>Select To View Log</h1>
             <hr />

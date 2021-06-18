@@ -77,8 +77,8 @@ export default function LogDetails() {
         <Button onClick={() => history.goBack()}>⬅ Go Back</Button>
 
         <Card
-          // class='row align-items-center'
-          // class='col-md-8 offset-md-2'
+          class='row align-items-center'
+          class='col-md-8 offset-md-2'
           body
           className='log-details-container'
           border='primary'
