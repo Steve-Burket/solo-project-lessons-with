@@ -38,7 +38,8 @@ function StudentRoster(props) {
     <div>
       <Card body className='student-roster' border='primary'>
         <h2>Student Roster</h2>
-        <hr/>
+        <hr />
+        <p className='found-logs'>Number of Students: {students.length}</p>
         <Table striped bordered hover variant='secondary' size='sm'>
           <thead>
             <tr>

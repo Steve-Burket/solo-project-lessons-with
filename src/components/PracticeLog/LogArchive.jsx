@@ -32,7 +32,10 @@ export default function LogArchive() {
         <div>
           <Card body className='student-archive' border='primary'>
             <h1>Select To View Log</h1>
-            <hr/>
+            <hr />
+            <p className='found-logs'>
+              Practice logs found: {practiceLog.length}
+            </p>
             <Table striped bordered hover variant='secondary' size='sm'>
               <thead>
                 <tr>
@@ -65,9 +68,12 @@ export default function LogArchive() {
     } else {
       return (
         <div>
-          <Card>
+          <Card body className='student-archive' border='primary'>
             <h1>Select To View Log</h1>
-            <hr/>
+            <hr />
+            <p className='found-logs'>
+              Practice logs found: {practiceLog.length}
+            </p>
             <Table striped bordered hover variant='secondary' size='sm'>
               <thead>
                 <tr>
