@@ -2,13 +2,12 @@ import { react, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Nav() {
   const user = useSelector((store) => store.user);
   const teacher = useSelector((store) => store.myTeacher);
 
-  const dispatch = useDispatch();
 
   console.log(teacher.first_name);
   console.log(user.instructor_is);
@@ -22,6 +21,14 @@ function Nav() {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
+
+  // don't show teacher in title when logged out
+  // function teacherInTitle() {
+  // if (path = '/logout') {
+      
+  // }
+  // }
+
   return (
     <div className='nav'>
       <Link to='/home'>
