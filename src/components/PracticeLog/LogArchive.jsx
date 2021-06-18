@@ -7,7 +7,7 @@ import LogDetails from './LogDetails';
 import './LogArchive.css';
 
 // react bootstrap!
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, Card } from 'react-bootstrap';
 
 export default function LogArchive() {
   // Reducer Store
@@ -30,76 +30,92 @@ export default function LogArchive() {
     if (user.is_instructor === false) {
       return (
         <div>
-          <Table striped bordered hover variant='secondary' size='sm'>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Topic</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {practiceLog.map((log) => {
-                console.log(`This is ${log.first_name}'s log`);
-                return (
-                  <tr key={log.id} value={log.id}>
-                    <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
-                    <td>{log.topic}</td>
+          <Card body border='primary' className='student-archive-container'>
+            <h1>Select To View Log</h1>
+            <hr />
+            <p className='found-logs'>
+              Practice logs found: {practiceLog.length}
+            </p>
+            <Table
+              className='student-archive-table'
+              striped
+              bordered
+              hover
+              variant='secondary'
+              size='sm'
+            >
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Topic</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {practiceLog.map((log) => {
+                  console.log(`This is ${log.first_name}'s log`);
+                  return (
+                    <tr key={log.id} value={log.id}>
+                      <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+                      <td>{log.topic}</td>
 
-                    <td>
-                      <Button onClick={() => fetchPracticeLogs(log)}>
-                        View
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+                      <td>
+                        <Button onClick={() => fetchPracticeLogs(log)}>
+                          View
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </Card>
         </div>
       );
     } else {
       return (
         <div>
-          <Table striped bordered hover variant='secondary' size='sm'>
-            <thead>
-              <tr>
-                <th>Student</th>
-                <th>Instrument</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {practiceLog.map((log) => {
-                console.log(`This is ${log.first_name}'s log`);
-                return (
-                  <tr key={log.id} value={log.id}>
-                    <td>
-                      {log.first_name} {log.last_name}
-                    </td>
-                    <td>{log.instrument}</td>
-                    <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
+          <Card body border='primary' className='teacher-archive-container'>
+            <h1>Select To View Log</h1>
+            <hr/>
+            <p className='found-logs'>
+              Practice logs found: {practiceLog.length}
+            </p>
+            <Table striped bordered hover variant='secondary' size='sm'>
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Instrument</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {practiceLog.map((log) => {
+                  console.log(`This is ${log.first_name}'s log`);
+                  return (
+                    <tr key={log.id} value={log.id}>
+                      <td>
+                        {log.first_name} {log.last_name}
+                      </td>
+                      <td>{log.instrument}</td>
+                      <td>{moment(log.date_of).format('MMMM Do YYYY')}</td>
 
-                    <td>
-                      <Button onClick={() => fetchPracticeLogs(log)}>
-                        View
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
+                      <td>
+                        <Button onClick={() => fetchPracticeLogs(log)}>
+                          View
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </Card>
         </div>
       );
     }
   }
 
-  return (
-    <>
-      <h1>Select To View Log</h1>
-      {isStudent(user.is_instructor)}
-    </>
-  );
+  return <>{isStudent(user.is_instructor)}</>;
 }
