@@ -16,39 +16,18 @@ function UserPage() {
   console.log('here is the students instrument:', user.instrument);
 
   function studentGreeting() {
-    if (user.is_instructor === !true) {
-      return (
-        <Card
-          body
-          id='greeting'
-          className='contact-info-container'
-          border='info'
-        >
-          <h3>Contact Info</h3>
-          <p>Your instructor is {myTeacher.first_name}</p>;
-          <p>
-            Phone #{<br />}
-            {myTeacher.phone_number}
-            {<br />}
-            Email
-            {<br />}
-            {myTeacher.email}
-          </p>
-        </Card>
-      );
-    }
+  if (user.is_instructor === !true) {
+    return <p>Your instructor is {myTeacher.first_name}</p>;
   }
-
-  // function teacherContactInfo() {}
+}
 
   return (
     <div className='container'>
       <Card id='greeting'>
         <h2>Hello, {user.first_name}!</h2>
         <hr />
+        {studentGreeting()}
       </Card>
-      {studentGreeting()}
-
       {user.is_instructor === true && <StudentRoster />}
       {user.is_instructor === false && <PracticeLog />}
 
