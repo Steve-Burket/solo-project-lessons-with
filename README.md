@@ -1,58 +1,54 @@
+# LessonsWith
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Description
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+_Duration: 2 Week Sprint_
 
-## Use the Template for This Repository (Don't Clone)
-
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+Having 10+ years as a music instructor I've used a lot of different tools to help in the lesson room to help student's achieve their goals. From online TAB sites, to YouTube/ Spotify, and platforms such as Take Lessons I've found the benefit of tech in the lesson room and to help find students. Out of all the tools I've used there is an easy way for the teacher to communicate information to the student but not as easy for the student to communicate back. There have been Practice Log features but are never used by the student as it's not always a highlight of the App. Through LessonsWith, my goal was to make an App that puts the Practice Log front and center as way for student's to keep track of progress and for the teacher to see what the student has practiced over the week and answer questions when they arise or give tips on how to practice to get better results.
 
 
-## Prerequisites
+## Screen Shot
 
-Before you get started, make sure you have the following software installed on your computer:
+Teacher's Home view
+---
+![teacher home page](teacher-homepage.png)
+
+Teacher's overall view of submitted practice logs
+---
+![teacer view student log archive](teacher-view-log-archive.png)
+
+Student's Home view
+---
+![student practice log form](student-homepage.png)
+---
+
+Student's Detailed view of logs
+---
+![student detailed practice log ](student-detailed-practice-log.png)   
+---
+
+Student's Edit Log view
+---
+![student edit log form](student-edit-log.png)
+---
+
+
+### Prerequisites
+
+Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
 
-## Create database and table
+## Installation
 
-Create a new database called `prime_app` and create a `user` table:
+If your application has secret keys (for example --  Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
-
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
-
-## Development Setup Instructions
-
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+1. Create a database named `lessons-with`,
+2. The queries in the `database.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries, 
+3. Open up your editor of choice and run an `npm install`
+4. Run `npm run server` in your terminal
+5. Run `npm run client` in your terminal
+6. The `npm run client` command will open up a new browser tab for you!
 
 ## Testing Routes with Postman
 
@@ -69,6 +65,29 @@ Keep in mind that once you using the login route, Postman will manage your sessi
 
 After running the login route above, you can try any other route you've created that requires a logged in user!
 
+
+## Usage
+How does someone use this application? Tell a user story here.
+
+1. Teacher has ability to view Student Roster
+2. Teacher can select a student to get a table archive of that student's logs
+3. Student can submit practice logs for their own archive as well as for the teacher to see
+4. Student can edit and delete logs when needed.
+
+
+
+## Built With
+
+- Create React App
+- Express
+- React Bootstrap
+- Redux
+- Axios
+- Passport
+- PostgresSQL
+
+(a full list of dependencies can be found in `package.json`).
+
 ## Production Build
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
@@ -76,35 +95,6 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 - Start postgres if not running already by using `brew services start postgresql`
 - Run `npm start`
 - Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
 
 ## Deployment
 
@@ -116,6 +106,14 @@ This code is also heavily commented. We recommend reading through the comments, 
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
 
-## Update Documentation
+## Acknowledgement
+Thanks to [Emerging Digital Academy](https://www.emergingacademy.org/) who equipped and helped me to make this application a reality. 
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+Thank you to my cohort-mates for support.
+
+Thank you to my family for encouraging me to pursue my dreams of creating through coding.
+
+## Support
+If you have suggestions or issues, please email me at [burketsteve@gmail.com](www.google.com)
+
+----------------------------------------------------------------------------------------------------------------------------
