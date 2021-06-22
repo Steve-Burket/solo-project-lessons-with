@@ -34,7 +34,8 @@
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
+  font-family: chalkboard;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -49,7 +50,7 @@
   background-color: #d61e1e;
   color: white;
   padding: 26px 12px;
-  font-size: 18px;
+  font-size: 22px;
   border: 2px outset rgb(189, 182, 98);
 
 }
